@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Apr 10, 2026 alle 21:53
+-- Creato il: Apr 23, 2026 alle 22:21
 -- Versione del server: 11.8.3-MariaDB-0+deb13u1 from Debian
 -- Versione PHP: 8.4.11
 
@@ -284,7 +284,8 @@ INSERT INTO `proprietari` (`id`, `id_vet`, `username`, `password`, `nome`, `cogn
 (2, NULL, 'ale', '$2y$12$3JHT.48jxaEbMzt0NMLoUOl9vfwcDRtPcBc1iyUuk/0kBMSTCeOh2', 'pippo', 'paperino', 'sdfas', '2026-04-10 17:19:34'),
 (3, 4, '', '$2y$12$WsRRffIb6XW0FipQ38v.de6joUUTYdUsw8IUMYKr1oK1u6OSTDqe6', 'asdfre', 'erwewe', 'asdfasdferr', '2026-04-10 17:34:34'),
 (4, NULL, 'valeria', '$2y$12$Ug1Nb80Tc5LrXYEbBP1XLOddplwVrq4UvSvzVfwZh5HAQHpsHq4uO', 'asdsdf', 'fsasad', 'asdfasd', '2026-04-10 19:42:09'),
-(5, 1, '', '$2y$12$tDcjWIMSuEhaq.xMEBTGiuM30X9YvEORfpdgKS.6jfDeM/9Qs57SK', 'pippo', 'paperino', 'asdfer', '2026-04-10 21:47:54');
+(5, 1, '', '$2y$12$tDcjWIMSuEhaq.xMEBTGiuM30X9YvEORfpdgKS.6jfDeM/9Qs57SK', 'pippo', 'paperino', 'asdfer', '2026-04-10 21:47:54'),
+(6, NULL, 'aleh', '$2y$12$sNPxGMLp.ki/ckhlIhvJheX2Ho.5fZ3OtJbJf7Frc7UV6c5K3GDRe', 'alep', 'sdfa', 'sadf', '2026-04-23 18:57:11');
 
 -- --------------------------------------------------------
 
@@ -328,10 +329,11 @@ CREATE TABLE `veterinari` (
 --
 
 INSERT INTO `veterinari` (`id`, `username`, `password`, `nome`, `cognome`, `email`, `data_creazione`) VALUES
-(1, 'dr_rossi', 'hash_password_sicura', 'Mario', 'Rossi', 'mario.rossi@clinicavet.it', '2026-04-08 22:45:05'),
+(1, 'dr_rossi', '$2y$12$NLMlKdvJVQu8ocP5U5rtyuo21etJU7cvyWgr5/jjeyJpSzWAOm.fO', 'Mario', 'Rossi', 'mario.rossi@clinicavet.it', '2026-04-08 22:45:05'),
 (4, 'ale', '$2y$12$6JAr6OPLJ7Sp6T6Gm6v5h.OkEusKmPDmYAQ/kfP23nBl6H5QwvbuO', 'ale', 'sadfer', 'saf', '2026-04-10 17:33:40'),
 (5, 'user', '$2y$12$bmBYtINvFUh83OiJp2lHoukMtLqLslPGJFCPpKzohdoD40jqeSNBi', 'coso', 'sadf', 'saf', '2026-04-10 17:38:52'),
-(6, 'dt_hop', '$2y$12$xCMxmlB/KlOt3I0oo0nmtetSazvM5fkn8HPkUSVQ/ujSzpifNNk6G', 'hop', 'qewrq', 'asdfasdf', '2026-04-10 17:43:34');
+(6, 'dt_hop', '$2y$12$xCMxmlB/KlOt3I0oo0nmtetSazvM5fkn8HPkUSVQ/ujSzpifNNk6G', 'hop', 'qewrq', 'asdfasdf', '2026-04-10 17:43:34'),
+(7, 'ci', '$2y$12$NLMlKdvJVQu8ocP5U5rtyuo21etJU7cvyWgr5/jjeyJpSzWAOm.fO', 'cscsa', 'cadc', 'cad', '2026-04-23 19:54:56');
 
 -- --------------------------------------------------------
 
@@ -527,7 +529,7 @@ ALTER TABLE `pazienti_veterinari`
 -- AUTO_INCREMENT per la tabella `proprietari`
 --
 ALTER TABLE `proprietari`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT per la tabella `sangue`
@@ -539,7 +541,7 @@ ALTER TABLE `sangue`
 -- AUTO_INCREMENT per la tabella `veterinari`
 --
 ALTER TABLE `veterinari`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT per la tabella `vomito`

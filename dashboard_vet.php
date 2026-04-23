@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once("connection/connection.php");
 //ricordarsi che quando si usa require_once() viene eseguito tutto il codice "libero" automaticamente appena viene chamato
 require_once("connection/check_vet.php");
@@ -25,7 +25,7 @@ $res = $conn->query($sql);
 </head>
 <body class="dacambiare" >
 
-<h1>Benvenuta/o, <?php echo  ($_SESSION['type'] == 'vet' ? 'dottor ' : '') . $_SESSION['username'] ?></h1><br><br>
+<h1>Benvenuta/o, <?php echo  ($_SESSION['usertype'] == 'vet' ? 'dottor ' : '') . $_SESSION['username'] ?></h1><br><br>
 
 <?php 
 

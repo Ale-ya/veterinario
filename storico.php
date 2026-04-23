@@ -8,10 +8,7 @@ require_once("connection/check_vet.php");
 //var_dump($_SESSION); 
 //die();
 
-if (!isset($_SESSION["status"]) || !isset($_SESSION["username"]) || $_SESSION["status"] !== "verified"){
-    header("Location: login.php");
-    exit();
-}
+
 if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET"){
     if(isset($_GET["id"]) && isset($_SESSION)){
         $conn = get_conn();
@@ -102,7 +99,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET"){
 <!-- chart.js-->
 <script>
 const vomito_charts = document.getElementById('vomito').getContext('2d');
-new Chart(ctx, {
+new Chart(vomito_charts, {
     type: 'line',
     data: {
         labels: <?php echo json_encode($data_riferimento) ?>,

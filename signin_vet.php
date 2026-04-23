@@ -26,7 +26,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 
 
         $conn = get_conn();
-        $sql = "select * from veterinari where {$username} = username";
+        $sql = "select * from veterinari where  username = '{$username}'";
         $res = $conn->query($sql);
 
         if($res){
