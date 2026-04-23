@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Apr 23, 2026 alle 22:21
+-- Creato il: Apr 23, 2026 alle 22:39
 -- Versione del server: 11.8.3-MariaDB-0+deb13u1 from Debian
 -- Versione PHP: 8.4.11
 
@@ -183,7 +183,21 @@ CREATE TABLE `log` (
 
 INSERT INTO `log` (`id`, `id_paziente`, `id_vomito`, `id_atteggiamento`, `id_appetito`, `id_dimagrimento`, `id_frequenza_feci`, `id_sangue`, `id_muco`, `id_flatulenza`, `id_lambimento`, `data_di_riferimento`, `timestamp`) VALUES
 (1, 4, 1, 2, 5, 4, 2, 3, 2, 3, 2, '2026-04-10', '2026-04-10 20:16:05'),
-(2, 8, 2, 4, 1, 2, 4, 1, 1, 1, 1, '2026-04-10', '2026-04-10 21:50:21');
+(2, 8, 2, 4, 1, 2, 4, 1, 1, 1, 1, '2026-04-10', '2026-04-10 21:50:21'),
+(3, 4, 3, 2, 2, 2, 3, 1, 1, 2, 1, '2026-04-11', '2026-04-23 22:29:56'),
+(4, 4, 4, 3, 3, 3, 3, 1, 2, 2, 2, '2026-04-14', '2026-04-23 22:29:56'),
+(5, 4, 5, 4, 4, 4, 4, 2, 2, 2, 2, '2026-04-17', '2026-04-23 22:29:56'),
+(6, 5, 2, 1, 1, 1, 2, 1, 1, 1, 1, '2026-04-12', '2026-04-23 22:29:56'),
+(7, 5, 3, 2, 2, 2, 3, 1, 1, 2, 1, '2026-04-16', '2026-04-23 22:29:56'),
+(8, 6, 1, 3, 3, 3, 4, 2, 1, 1, 2, '2026-04-13', '2026-04-23 22:29:56'),
+(9, 6, 4, 4, 4, 4, 4, 2, 2, 2, 2, '2026-04-18', '2026-04-23 22:29:56'),
+(10, 7, 2, 1, 2, 1, 1, 1, 1, 1, 1, '2026-04-11', '2026-04-23 22:29:56'),
+(11, 7, 3, 3, 3, 3, 3, 1, 2, 2, 1, '2026-04-15', '2026-04-23 22:29:56'),
+(12, 7, 5, 4, 4, 4, 4, 2, 2, 2, 2, '2026-04-20', '2026-04-23 22:29:56'),
+(13, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, '2026-04-11', '2026-04-23 22:29:56'),
+(14, 1, 3, 2, 2, 2, 2, 1, 1, 2, 1, '2026-04-15', '2026-04-23 22:29:56'),
+(15, 8, 4, 3, 3, 3, 3, 2, 2, 2, 2, '2026-04-12', '2026-04-23 22:29:56'),
+(16, 8, 2, 2, 2, 1, 2, 1, 1, 1, 1, '2026-04-16', '2026-04-23 22:29:56');
 
 -- --------------------------------------------------------
 
@@ -255,8 +269,11 @@ CREATE TABLE `pazienti_veterinari` (
 
 INSERT INTO `pazienti_veterinari` (`id`, `id_paziente`, `id_veterinario`) VALUES
 (1, 1, 1),
-(4, 7, 1),
-(5, 8, 1);
+(4, 7, 4),
+(5, 8, 1),
+(6, 4, 4),
+(7, 5, 4),
+(8, 6, 4);
 
 -- --------------------------------------------------------
 
@@ -283,7 +300,7 @@ INSERT INTO `proprietari` (`id`, `id_vet`, `username`, `password`, `nome`, `cogn
 (1, 1, 'luca85', 'password_proprietario', 'Luca', 'Bianchi', 'luca.bianchi@email.com', '2026-04-08 22:45:06'),
 (2, NULL, 'ale', '$2y$12$3JHT.48jxaEbMzt0NMLoUOl9vfwcDRtPcBc1iyUuk/0kBMSTCeOh2', 'pippo', 'paperino', 'sdfas', '2026-04-10 17:19:34'),
 (3, 4, '', '$2y$12$WsRRffIb6XW0FipQ38v.de6joUUTYdUsw8IUMYKr1oK1u6OSTDqe6', 'asdfre', 'erwewe', 'asdfasdferr', '2026-04-10 17:34:34'),
-(4, NULL, 'valeria', '$2y$12$Ug1Nb80Tc5LrXYEbBP1XLOddplwVrq4UvSvzVfwZh5HAQHpsHq4uO', 'asdsdf', 'fsasad', 'asdfasd', '2026-04-10 19:42:09'),
+(4, 4, 'valeria', '$2y$12$Ug1Nb80Tc5LrXYEbBP1XLOddplwVrq4UvSvzVfwZh5HAQHpsHq4uO', 'asdsdf', 'fsasad', 'asdfasd', '2026-04-10 19:42:09'),
 (5, 1, '', '$2y$12$tDcjWIMSuEhaq.xMEBTGiuM30X9YvEORfpdgKS.6jfDeM/9Qs57SK', 'pippo', 'paperino', 'asdfer', '2026-04-10 21:47:54'),
 (6, NULL, 'aleh', '$2y$12$sNPxGMLp.ki/ckhlIhvJheX2Ho.5fZ3OtJbJf7Frc7UV6c5K3GDRe', 'alep', 'sdfa', 'sadf', '2026-04-23 18:57:11');
 
@@ -505,7 +522,7 @@ ALTER TABLE `lambimento`
 -- AUTO_INCREMENT per la tabella `log`
 --
 ALTER TABLE `log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT per la tabella `muco`
@@ -523,7 +540,7 @@ ALTER TABLE `pazienti`
 -- AUTO_INCREMENT per la tabella `pazienti_veterinari`
 --
 ALTER TABLE `pazienti_veterinari`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT per la tabella `proprietari`
