@@ -1,0 +1,112 @@
+<?php 
+session_start();
+
+require_once("connection/connection.php");
+
+$str = "";
+
+if (isset($_GET["status"])) {
+
+    if ($_GET["status"] == "databaseerror") {
+        $str = "Errore del database";
+    } elseif ($_GET["status"] == "accountunknown") {
+        $str = "Username non trovato";
+    } elseif ($_GET["status"] == "passworderror") {
+        $str = "Password errata";
+    }
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["type"], $_POST["username"], $_POST["password"])) {
+        $connection = get_conn();
+
+        $user = $_POST["username"];
+        $type = $_POST["type"];
+        $pass = $_POST["password"];
+
+        if ($type == "vet") {
+            $table = "veterinari";
+        } elseif ($type == "customer") {
+            $table = "proprietari";
+        } else {
+            die("Tipo non valido");
+        }
+
+        $sqlquery = "SELECT id, username, nome, cognome, password, email FROM $table WHERE username = '$user'";
+
+        $res = $connection->query($sqlquery);
+
+        if (!$res) {
+            header("Location: login.php?status=databaseerror");
+            exit;
+        }
+
+        if ($res->num_rows === 1) {
+            $data = $res->fetch_assoc();
+            
+            if (password_verify($pass, $data["password"])) {
+
+                //operatore ternario per evitare troppi if
+                $_SESSION["usertype"] = $type == "vet" ? "vet" : "owner";
+
+                $_SESSION["status"] = "verified";
+                $_SESSION["username"] = $data["username"];
+                $_SESSION["nome"] = $data["nome"];
+                $_SESSION["cognome"] = $data["cognome"];
+                $_SESSION["email"] = $data["email"];
+                $_SESSION["id"] = $data["id"];
+
+
+                if($type == "vet"){
+                    header("Location: dashboard_vet.php");
+                }else{
+                    header("Location: dashboard_owner.php");
+                }
+                exit;
+
+            } else {
+                header("Location: login.php?status=passworderror");
+                exit;
+            }
+        } else {
+            header("Location: login.php?status=accountunknown");
+            exit;
+        }
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body class="d-flex vh-100 justify-content-center align-items-center bg-dark " >
+
+    <div class="p-5 text-center bg-secondary text-white rounded-3">
+        <h1>LOGIN</h1>
+        <h1><?php echo $str ?? ''?></h1>
+        <form action="login.php" method="post">
+            <label for="type" class="form-label">Accedi come: </label><br>
+            <select name="type" id="type" class="form-select">
+                <option value="vet">Veterinario</option>
+                <option value="customer">Cliente</option>
+            </select>
+            <div class="mb-3 mt-3">
+                <label for="username" class="form-label">Username: </label><br>
+                <input  class="form-control" type="text" name="username" id="username" required>
+            </div>
+            <div class="mb-3 mt-3">
+                <label for="password" class="form-label">Password: </label><br>
+                <input class="form-control" type="password" name="password" id="password" required>
+            </div>
+            <button class="btn btn-success" type="submit">Login</button>
+        </form>
+    </div>
+
+</body>
+</html>
+
