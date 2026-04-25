@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 require_once("connection/connection.php");
 require_once("connection/check_vet.php");
@@ -11,8 +10,30 @@ require_once("connection/check_vet.php");
 
 if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET"){
     if(isset($_GET["id"]) && isset($_SESSION)){
+
+        
+        
         $conn = get_conn();
-        $sql = "SELECT data_di_riferimento, a.peso as peso_appetito, att.peso as peso_atteggiamento, d.peso as peso_dimagrimento, f.peso as frequenza_feci_peso, s.peso as sangue_peso, m.peso as muco_peso, flat.peso as flatulenza_peso, lamb.peso as lambimento_peso, v.peso as vomito_peso FROM `log` JOIN appetito a ON id_appetito = a.id JOIN atteggiamento att ON id_atteggiamento = att.id JOIN dimagrimento d on d.id = id_dimagrimento JOIN frequenza_feci f on id_frequenza_feci = f.id JOIN sangue s ON id_sangue=s.id JOIN muco m ON m.id = id_muco JOIN flatulenza flat ON flat.id = id_flatulenza JOIN lambimento lamb ON lamb.id = id_lambimento JOIN vomito v ON v.id = id_vomito WHERE id_paziente = {$_GET['id']}; ";
+        $id_paziente = htmlspecialchars($_GET['id']);
+        // select 1 dovrebbe migliorare le performance del db siccome non deve cercare nulla ma solo confrontare la condizione e se trova qualcosa restituisce 1
+        // dovrebbe returnare un record con tutti i valori ad 1 per ogni corrispondenza
+        $sql = "SELECT 1 FROM pazienti_veterinari WHERE id_paziente = {$id_paziente} AND id_veterinario = {$_SESSION['id']}";
+        $res = $conn->query($sql);
+        if(!$res){
+            http_response_code(500);
+            //TODO button per tornare alla home 
+            exit();
+        }
+        if($res->num_rows == 0){
+            //401 dovrebbe essere "unauthorized"
+            //403 "forbidden" quando mancano i permessi in teoria 
+            http_response_code(403);
+            exit();
+            //TODO button per tornare alla home
+            //
+        }
+
+        $sql = "SELECT data_di_riferimento, a.peso as peso_appetito, att.peso as peso_atteggiamento, d.peso as peso_dimagrimento, f.peso as frequenza_feci_peso, s.peso as sangue_peso, m.peso as muco_peso, flat.peso as flatulenza_peso, lamb.peso as lambimento_peso, v.peso as vomito_peso FROM `log` JOIN appetito a ON id_appetito = a.id JOIN atteggiamento att ON id_atteggiamento = att.id JOIN dimagrimento d on d.id = id_dimagrimento JOIN frequenza_feci f on id_frequenza_feci = f.id JOIN sangue s ON id_sangue=s.id JOIN muco m ON m.id = id_muco JOIN flatulenza flat ON flat.id = id_flatulenza JOIN lambimento lamb ON lamb.id = id_lambimento JOIN vomito v ON v.id = id_vomito WHERE id_paziente = {$id_paziente}; ";
         $res = $conn->query($sql);
         if(!$res){
             $str = "errore durante la connessione al database";

@@ -35,7 +35,7 @@ $res = $conn->query($sql);
         echo "<h1> " . $record["nome_paziente"] . " ". $record["razza"] . "</h1>";
         echo "<div class='btn-group'>";
         echo "<button type='button' class='btn btn-primary'><a href='storico.php?id={$record['id_paziente']}'>storico</a></button>";
-        echo "<button type='button' class='btn btn-primary'><a href='info.php?id={$record['id_paziente']}'>informazioni generali</a></button>";
+        echo "<button type='button' class='btn btn-primary'><a href='info_animale.php?id={$record['id_paziente']}'>informazioni generali</a></button>";
         echo "</div>";
         echo "</div>";
 
