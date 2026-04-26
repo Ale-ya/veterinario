@@ -82,42 +82,50 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET"){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
-<h1>Benvenuta/o, <?php echo  ($_SESSION['type'] == 'vet' ? 'dottor ' : '') . $_SESSION['username'] ?></h1><br><br>
+<body class="d-flex justify-content-center bg-dark py-5">
 
-<div style="height: 300px;">
-    <canvas id="vomito"></canvas>
-</div>
+    <div class="p-5 text-center bg-white text-dark rounded-3 ">
+        <div class="d-flex justify-content-between align-items-center me-auto">
+            <p class="h1 mb-5 fw-bold text-primary me-4">Benvenuta/o, <?php echo  ($_SESSION['usertype'] == 'vet' ? 'dottor ' : '') . $_SESSION['username'] ?></p><br><br>
+            <a href="dashboard_vet.php" class="btn btn-secondary mb-5 ms-1">Torna alla home</a>
+        </div>
 
-<div style="height: 300px;">
-    <canvas id="lambimento"></canvas>
-</div>
+        <div class="p-5 text-center bg-light text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
+            <canvas id="vomito"></canvas>
+        </div>
 
-<div style="height: 300px;">
-    <canvas id="appetito"></canvas>
-</div>
+        <div class="p-5 text-center bg-white text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
+            <canvas id="lambimento"></canvas>
+        </div>
 
-<div style="height: 300px;">
-    <canvas id="atteggiamento"></canvas>
-</div>
+        <div class="p-5 text-center bg-light text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
+            <canvas id="appetito"></canvas>
+        </div>
 
-<div style="height: 300px;">
-    <canvas id="dimagrimento"></canvas>
-</div>
-<div style="height: 300px;">
-    <canvas id="frequenza_feci"></canvas>
-</div>
-<div style="height: 300px;">
-    <canvas id="sangue"></canvas>
-</div>
-<div style="height: 300px;">
-    <canvas id="muco"></canvas>
-</div>
-<div style="height: 300px;">
-    <canvas id="flatulenza"></canvas>
-</div>
+        <div class="p-5 text-center bg-white text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
+            <canvas id="atteggiamento"></canvas>
+        </div>
 
-<!-- chart.js-->
+        <div class="p-5 text-center bg-light text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
+            <canvas id="dimagrimento"></canvas>
+        </div>
+        <div class="p-5 text-center bg-white text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
+            <canvas id="frequenza_feci"></canvas>
+        </div>
+        <div  class="p-5 text-center bg-light text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
+            <canvas id="sangue"></canvas>
+        </div>
+        <div class="p-5 text-center bg-white text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
+            <canvas id="muco"></canvas>
+        </div>
+        <div class="p-5 text-center bg-light text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
+            <canvas id="flatulenza"></canvas>
+        </div>
+
+    </div>
+<!-- chart.js documentazione per ticks
+https://www.chartjs.org/docs/latest/samples/scale-options/ticks.html
+-->
 <script>
 const vomito_charts = document.getElementById('vomito').getContext('2d');
 new Chart(vomito_charts, {
@@ -288,6 +296,7 @@ new Chart(muco_chart, {
         maintainAspectRatio: false
     }
 });
+/*
 const flatulenza_chart = document.getElementById('flatulenza').getContext('2d');
 new Chart(flatulenza_chart, {
     type: 'line',
@@ -309,6 +318,69 @@ new Chart(flatulenza_chart, {
         maintainAspectRatio: false
     }
 });
+*/
+const flatulenza_chart = document.getElementById('flatulenza').getContext('2d');
+new Chart(flatulenza_chart, {
+    type: 'line',
+    data: {
+        labels: <?php echo json_encode($data_riferimento) ?>,
+        datasets: [
+            {
+                label: 'Flatulenza (tutti i dati)',
+                data: <?php echo json_encode($pesoflatulenza) ?>,
+                borderWidth: 1,
+                fill: false,
+                borderColor: 'red',
+                pointRadius: 0,
+            },
+            {
+                label: 'Flatulenza (senza zeri)',
+                data: <?php 
+                    $dati_senza_zeri = array_map(function($value) {
+                        return $value == 0 ? null : $value;
+                    }, $pesoflatulenza);
+                    echo json_encode($dati_senza_zeri);
+                ?>,
+                borderWidth: 2,
+                fill: false,
+                borderColor: 'blue',
+                pointRadius: 3,
+                pointBackgroundColor: 'blue',
+                spanGaps: true, // ricordarsi di mettere false se non si vuole  collegare i punti attraverso i null
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        //todo: fare query e poi sostituire le stringhe con i valori php sortati rsort()
+        scales: {
+            y: {
+                ticks: {
+                    callback: function(value, index, values) {
+                    switch(value) {
+                        case 0:
+                            return '0 - Assente';
+                        case 1:
+                            return '1 - Leggera';
+                        case 2:
+                            return '2 - Moderata';
+                        case 3:
+                            return '3 - Grave';
+                        case 4:
+                            return '4 - Molto grave';
+                        default:
+                            return value;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+});
+
+
 </script>
 
 </body>

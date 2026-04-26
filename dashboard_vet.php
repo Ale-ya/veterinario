@@ -23,27 +23,28 @@ $res = $conn->query($sql);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body class="dacambiare" >
+<body class="d-flex justify-content-center bg-dark py-5" >
 
-<h1>Benvenuta/o, <?php echo  ($_SESSION['usertype'] == 'vet' ? 'dottor ' : '') . $_SESSION['username'] ?></h1><br><br>
+    <div class="p-5 text-center bg-white text-dark rounded-3 ">
+    <p class="h1 mb-1 fw-bold text-primary me-1">Benvenuta/o, <?php echo  ($_SESSION['usertype'] == 'vet' ? 'dottor ' : '') . $_SESSION['username'] ?></p><br><br>
 
-<?php 
+    <?php 
 
-    foreach ($res as $record) {
-        
-        echo "<div class='p-5 text-center bg-secondary text-white rounded-3'>";
-        echo "<h1> " . $record["nome_paziente"] . " ". $record["razza"] . "</h1>";
-        echo "<div class='btn-group'>";
-        echo "<button type='button' class='btn btn-primary'><a href='storico.php?id={$record['id_paziente']}'>storico</a></button>";
-        echo "<button type='button' class='btn btn-primary'><a href='info_animale.php?id={$record['id_paziente']}'>informazioni generali</a></button>";
-        echo "</div>";
-        echo "</div>";
+        foreach ($res as $record) {
+            
+            echo "<div class='p-5 text-center bg-light text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3'>";
+            echo "<p class='h2 mb-4 fw-semibold text-secondary'> " . $record["nome_paziente"] . ", ". $record["razza"] . "</p>";
+            echo "<div class='btn-group'>";
+            echo "<a class='btn btn-primary btn-1g fs-3' href='storico.php?id={$record['id_paziente']}'>storico</a></button>";
+            echo "<a class='btn btn-primary btn-1g fs-3' href='info_animale.php?id={$record['id_paziente']}'>informazioni generali</a></button>";
+            echo "</div>";
+            echo "</div>";
 
-    }
+        }
 
-?>
+    ?>
 
-
+    </div>
 
 </body>
 </html>
