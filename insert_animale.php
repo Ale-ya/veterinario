@@ -7,6 +7,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 var_dump($_SESSION);
 */
+
 if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
     if(isset($_POST["nome"]) && isset($_POST["date"])  && isset($_POST["peso"]) && isset($_POST["razza"]) && isset($_POST["sesso"]) && isset($_POST["terapia_t0"]) && isset($_POST["dieta_t0"]) && isset($_POST["sospetta_diagnosi_t0"])&& isset($_POST["vet"])){
         $nome = htmlspecialchars($_POST["nome"]);
@@ -57,51 +58,62 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body class=" d-flex justify-content-center bg-dark py-5" >
 
-    <div class="p-5  bg-secondary text-white rounded-3">
+    <div class="p-5  bg-light text-muted rounded-3">
         <h1>Questionario per l'aggiunta di un animale</h1>
         <form action="insert_animale.php" method="post">
 
-            <div class="mb-3 mt-3">
-                <label for="nome" class="form-label">nome animale:</label>
-                <input  class="form-control" type="text" name="nome" id="nome" required>
+            <div class="mb-3 mt-3 form-floating">
+                <!-- placeholder necessario per l'animzaione --> 
+                <input  class="form-control" type="text" name="nome" id="nome" required placeholder=" inseriere il nome ">
+                <label for="nome" >nome animale:</label>
             </div>
-            <div class="mb-3 mt-3">
-                <label for="peso" class="form-label">peso: </label>
-                <input  class="form-control" type="number" name="peso" id="peso" min="1" step="0.1" required><span > kg</span>
+            <div class="mb-3 mt-3 form-floating">
+                <input  class="form-control" type="number" name="peso" id="peso" min="1" step="0.1" required>
+                <label for="peso" class="form-label">peso: (kg) </label>
             </div>
-            <div class="mb-3 mt-3">
+            <div class="mb-3 mt-3 form-floating">
+                <input class="form-control"  type="text" name="razza" id="razza" required placeholder=" inseriere la razza ">
                 <label for="razza" class="form-label">razza:</label>
-                <input class="form-control"  type="text" name="razza" id="razza" required>
             </div>
 
             
-            <div class="mb-3 mt-3">
+            <div class="mb-3 mt-3 form-floating">
+                <input  class="form-control" type="text" name="terapia_t0" id="terapia_t0" required placeholder=" ">
                 <label for="terapia_t0" class="form-label"> terapia_t0 </label>
-                <input  class="form-control" type="text" name="terapia_t0" id="terapia_t0" required>
             </div>
-            <div class="mb-3 mt-3">
-                <label for="dieta_t0" class="form-label"> terapia_t0 </label>
-                <input  class="form-control" type="text" name="dieta_t0" id="dieta_t0" required>
+            <div class="mb-3 mt-3 form-floating">
+                <input  class="form-control" type="text" name="dieta_t0" id="dieta_t0" required placeholder=" ">
+                <label for="dieta_t0" class="form-label"> dieta T0: </label>
             </div>
-            <div class="mb-3 mt-3">
+            <div class="mb-3 mt-3 form-floating">
+                <input class="form-control" type="text" name="sospetta_diagnosi_t0" id="sospetta_diagnosi_t0" required placeholder=" ">
                 <label for="sospetta_diagnosi_t0" class="form-label"> terapia_t0 </label>
-                <input class="form-control" type="text" name="sospetta_diagnosi_t0" id="sospetta_diagnosi_t0" required>
             </div>
 
-            <div class="mb-3 mt-3">
-                <label for="date" class="form-label">data di nascita:</label>
+            <div class="mb-3 mt-3 form-floating">
                 <input class="form-control" type="date" name="date" id="date" required>
+                <label for="date" class="form-label">data di nascita:</label>
             </div>
 
-            <label for="sesso" class="form-label">sesso: </label>
-            <select name="sesso" id="sesso" class="form-select">
+            <div class="d-flex gap-3">
                 <!--  
                 0 (false) = femmina
                 1 (true) = maschio
                 -->
+                <input type="radio" class="btn-check" name="sesso" id="sesso" value="1" autocomplete="off" checked>
+                <label class="btn btn-outline-primary rounded-pill px-4" for="sesso">Maschio</label>
+
+                <input type="radio" class="btn-check" name="sesso" id="sesso" value="0" autocomplete="off">
+                <label class="btn btn-outline-primary rounded-pill px-4" for="sesso">Femmina</label>
+            </div><br>
+
+            <!--
+            <label for="sesso" class="form-label">sesso: </label>
+            <select name="sesso" id="sesso" class="form-select">
                 <option value="1">MASCHIO</option>
                 <option value="0">FEMMINA</option>
             </select><br> 
+            -->
 
             <label for="vet" class="form-label">veterinario specifico</label>
             <select name="vet" id="vet" class="form-select">
@@ -122,7 +134,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 
             </select><br> 
 
-            <button class="btn btn-success" type="submit">Login</button>
+            <button class="btn btn-success" type="submit">Inserisci animale</button>
         </form>
     </div>
 </body>

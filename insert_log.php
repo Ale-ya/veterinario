@@ -48,13 +48,11 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Document</title>
 </head>
 <body class="d-flex justify-content-center bg-dark py-5 " >
-    <div class="p-5 text-center bg-secondary text-white rounded-3">
+    <div class="p-5 text-center bg-light text-dark rounded-3">
         <form action="insert_log.php" method="post">
             <h2> Form monitoraggio </h2>
-
-            <label for="animale" class="form-label">Animale di cui si vuole inserire il monitoraggio: </label><br>
-            <select name="animale" id="animale" class="form-select form-select">
-
+            <div class="d-flex gap-3">
+                <p class="h3">Animale</p>
                 <?php
                     if(isset($_SESSION['id'])){
                         $conn = get_conn();
@@ -62,162 +60,232 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 
                         $res = $conn->query($sql);
                         if (!$res){
-                            echo "<option value='unknown'>dati non disponibili, errore interno database</option>";
-                            exit();
+                            echo "<p class='h3 text-danger'>dati non disponibili, errore interno database</p>";
+                        }else{
+                            //se va in errore la query usando else evito di eseguire questa parte inutile
+                            $first_radio_button = true;
+                            foreach($res as $record){
+                                $id_radio_button = "animale_{$record['id']}";
+                                $checked = ($first_radio_button ? 'checked' : '');
+                                $first_radio_button = false;
+                                echo "
+                                <input type='radio' class='btn-check' name='animale' id='{$id_radio_button}' value='{$record['id']}' autocomplete='off' {$checked}>
+                                <label class='btn btn-outline-primary rounded-pill px-4' for='{$id_radio_button}'>{$record['nome_paziente']} ({$record['razza']} ".($record['sesso'] == 0 ? 'femmina' : 'maschio').")</label>";
+                            }
                         }
                         
-                        foreach($res as $record){
-                            echo "<option value='" . $record['id'] . "'>" . $record['nome_paziente'] ." ( " . $record['razza'] . " " . ($record['sesso'] == 0 ? 'femmina' : 'maschio') . " ) ". "</option>";
-                        }
                     }else{
                         header("Location: login.php");
                         exit();
                     }
                 ?>
+            </div><br>
 
-            </select><br> 
-            
-
-            <label for="vomito" class="form-label">inserire la frequenza del vomito:</label><br>
-            <select name="vomito" id="vomito" class="form-select form-select">
+            <div class="d-flex gap-3">
+                <p class="h3">Vomito</p>
                 <?php
                     $conn = get_conn();
                     $sql = "select * from vomito";
                     $res = $conn->query($sql);
                     if (!$res){
-                        echo "<option value='unknown'>dati non disponibili</option>";
+                        echo "<p class='h3 text-danger'>dati non disponibili, errore interno database</p>";
+                    }else{
+                        //se va in errore la query usando else evito di eseguire questa parte inutile
+                        $first_radio_button = true;
+                        foreach($res as $record){
+                            $id_radio_button = "vomito_{$record['id']}";
+                            $checked = ($first_radio_button ? 'checked' : '');
+                            $first_radio_button = false;
+                            echo "
+                            <input type='radio' class='btn-check' name='vomito' id='{$id_radio_button}' value='{$record['id']}' autocomplete='off' {$checked}>
+                            <label class='btn btn-outline-primary rounded-pill px-4' for='{$id_radio_button}'>{$record['description']}</label>";
+                        }
                     }
-                    foreach($res as $record){
-                        echo "<option value='" . $record['id'] . "'>" . $record['description'] . "</option>";
-                    }
+                        
                 ?>
+            </div><br>
 
-            </select><br> 
-
-            <label for="frequenza_feci" class="form-label">inserire la frequenza delle feci:</label><br>
-            <select name="frequenza_feci" id="frequenza_feci" class="form-select form-select">
+            <div class="d-flex gap-3">
+                <p class="h3">Frequenza feci</p>
                 <?php
                     $conn = get_conn();
                     $sql = "select * from frequenza_feci";
                     $res = $conn->query($sql);
                     if (!$res){
-                        echo "<option value='unknown'>dati non disponibili</option>";
+                        echo "<p class='h3 text-danger'>dati non disponibili, errore interno database</p>";
+                    }else{
+                        //se va in errore la query usando else evito di eseguire questa parte inutile
+                        $first_radio_button = true;
+                        foreach($res as $record){
+                            $id_radio_button = "freq_{$record['id']}";
+                            $checked = ($first_radio_button ? 'checked' : '');
+                            $first_radio_button = false;
+                            echo "
+                            <input type='radio' class='btn-check' name='frequenza_feci' id='{$id_radio_button}' value='{$record['id']}' autocomplete='off' {$checked}>
+                            <label class='btn btn-outline-primary rounded-pill px-4' for='{$id_radio_button}'>{$record['description']}</label>";
+                        }
                     }
-                    foreach($res as $record){
-                        echo "<option value='" . $record['id'] . "'>" . $record['description'] . "</option>";
-                    }
+                        
                 ?>
+            </div><br>
 
-            </select><br>
-            <label for="dimagrimento" class="form-label">dimagrimento:</label><br>
-            <select name="dimagrimento" id="dimagrimento" class="form-select form-select">
+            <div class="d-flex gap-3">
+                <p class="h3">Dimagrimento</p>
                 <?php
                     $conn = get_conn();
                     $sql = "select * from dimagrimento";
                     $res = $conn->query($sql);
                     if (!$res){
-                        echo "<option value='unknown'>dati non disponibili</option>";
-                    }
-                    foreach($res as $record){
-                        echo "<option value='" . $record['id'] . "'>" . $record['description'] . "</option>";
+                        echo "<p class='h3 text-danger'>dati non disponibili, errore interno database</p>";
+                    }else{
+                        //se va in errore la query usando else evito di eseguire questa parte inutile
+                        $first_radio_button = true;
+                        foreach($res as $record){
+                            $id_radio_button = "dimagrimento_{$record['id']}";
+                            $checked = ($first_radio_button ? 'checked' : '');
+                            $first_radio_button = false;
+                            echo "
+                            <input type='radio' class='btn-check' name='dimagrimento' id='{$id_radio_button}' value='{$record['id']}' autocomplete='off' {$checked}>
+                            <label class='btn btn-outline-primary rounded-pill px-4' for='{$id_radio_button}'>{$record['description']}</label>";
+                        }
                     }
                 ?>
-
-            </select><br>
-            <label for="atteggiamento" class="form-label">inserire l'atteggiamento</label><br>
-            <select name="atteggiamento" id="atteggiamento" class="form-select form-select">
+            </div><br>
+            <div class="d-flex gap-3">
+                <p class="h3">Atteggiamento riscontrato:</p>
                 <?php
                     $conn = get_conn();
                     $sql = "select * from atteggiamento";
                     $res = $conn->query($sql);
                     if (!$res){
-                        echo "<option value='unknown'>dati non disponibili</option>";
-                    }
-                    foreach($res as $record){
-                        echo "<option value='" . $record['id'] . "'>" . $record['description'] . "</option>";
+                        echo "<p class='h3 text-danger'>dati non disponibili, errore interno database</p>";
+                    }else{
+                        //se va in errore la query usando else evito di eseguire questa parte inutile
+                        $first_radio_button = true;
+                        foreach($res as $record){
+                            $id_radio_button = "atteggiamento_{$record['id']}";
+                            $checked = ($first_radio_button ? 'checked' : '');
+                            $first_radio_button = false;
+                            echo "
+                            <input type='radio' class='btn-check' name='atteggiamento' id='{$id_radio_button}' value='{$record['id']}' autocomplete='off' {$checked}>
+                            <label class='btn btn-outline-primary rounded-pill px-4' for='{$id_radio_button}'>{$record['description']}</label>";
+                        }
                     }
                 ?>
-
-            </select><br>
-            <label for="appetito" class="form-label">appetito dell'animale:</label><br>
-            <select name="appetito" id="appetito" class="form-select form-select">
+            </div><br>
+            <div class="d-flex gap-3">
+                <p class="h3">Appetito:</p>
                 <?php
                     $conn = get_conn();
                     $sql = "select * from appetito";
                     $res = $conn->query($sql);
                     if (!$res){
-                        echo "<option value='unknown'>dati non disponibili</option>";
-                    }
-                    foreach($res as $record){
-                        echo "<option value='" . $record['id'] . "'>" . $record['description'] . "</option>";
+                        echo "<p class='h3 text-danger'>dati non disponibili, errore interno database</p>";
+                    }else{
+                        //se va in errore la query usando else evito di eseguire questa parte inutile
+                        $first_radio_button = true;
+                        foreach($res as $record){
+                            $id_radio_button = "appetito_{$record['id']}";
+                            $checked = ($first_radio_button ? 'checked' : '');
+                            $first_radio_button = false;
+                            echo "
+                            <input type='radio' class='btn-check' name='appetito' id='{$id_radio_button}' value='{$record['id']}' autocomplete='off' {$checked}>
+                            <label class='btn btn-outline-primary rounded-pill px-4' for='{$id_radio_button}'>{$record['description']}</label>";
+                        }
                     }
                 ?>
-
-            </select><br>
-
-            <label for="muco" class="form-label">muco:</label><br>
-            <select name="muco" id="muco" class="form-select form-select">
+            </div><br>
+            <div class="d-flex gap-3">
+                <p class="h3">Muco:</p>
                 <?php
                     $conn = get_conn();
                     $sql = "select * from muco";
                     $res = $conn->query($sql);
                     if (!$res){
-                        echo "<option value='unknown'>dati non disponibili</option>";
-                    }
-                    foreach($res as $record){
-                        echo "<option value='" . $record['id'] . "'>" . $record['description'] . "</option>";
+                        echo "<p class='h3 text-danger'>dati non disponibili, errore interno database</p>";
+                    }else{
+                        //se va in errore la query usando else evito di eseguire questa parte inutile
+                        $first_radio_button = true;
+                        foreach($res as $record){
+                            $id_radio_button = "muco_{$record['id']}";
+                            $checked = ($first_radio_button ? 'checked' : '');
+                            $first_radio_button = false;
+                            echo "
+                            <input type='radio' class='btn-check' name='muco' id='{$id_radio_button}' value='{$record['id']}' autocomplete='off' {$checked}>
+                            <label class='btn btn-outline-primary rounded-pill px-4' for='{$id_radio_button}'>{$record['description']}</label>";
+                        }
                     }
                 ?>
+            </div><br>
 
-            </select><br>
-       
-            <label for="sangue" class="form-label">sanguinamento animale:</label><br>
-            <select name="sangue" id="sangue" class="form-select form-select">
+            <div class="d-flex gap-3">
+                <p class="h3">Sanguinamento animale:</p>
                 <?php
                     $conn = get_conn();
                     $sql = "select * from sangue";
                     $res = $conn->query($sql);
                     if (!$res){
-                        echo "<option value='unknown'>dati non disponibili</option>";
-                    }
-                    foreach($res as $record){
-                        echo "<option value='" . $record['id'] . "'>" . $record['description'] . "</option>";
+                        echo "<p class='h3 text-danger'>dati non disponibili, errore interno database</p>";
+                    }else{
+                        //se va in errore la query usando else evito di eseguire questa parte inutile
+                        $first_radio_button = true;
+                        foreach($res as $record){
+                            $id_radio_button = "sangue_{$record['id']}";
+                            $checked = ($first_radio_button ? 'checked' : '');
+                            $first_radio_button = false;
+                            echo "
+                            <input type='radio' class='btn-check' name='sangue' id='{$id_radio_button}' value='{$record['id']}' autocomplete='off' {$checked}>
+                            <label class='btn btn-outline-primary rounded-pill px-4' for='{$id_radio_button}'>{$record['description']}</label>";
+                        }
                     }
                 ?>
-
-            </select><br>
-
-            <label for="flatulenza" class="form-label">flatulenza:</label><br>
-            <select name="flatulenza" id="flatulenza" class="form-select">
+            </div><br>
+       
+            <div class="d-flex gap-3">
+                <p class="h3">Flatulenza:</p>
                 <?php
                     $conn = get_conn();
                     $sql = "select * from flatulenza";
                     $res = $conn->query($sql);
                     if (!$res){
-                        echo "<option value='unknown'>dati non disponibili</option>";
-                    }
-                    foreach($res as $record){
-                        echo "<option value='" . $record['id'] . "'>" . $record['description'] . "</option>";
+                        echo "<p class='h3 text-danger'>dati non disponibili, errore interno database</p>";
+                    }else{
+                        //se va in errore la query usando else evito di eseguire questa parte inutile
+                        $first_radio_button = true;
+                        foreach($res as $record){
+                            $id_radio_button = "flatulenza_{$record['id']}";
+                            $checked = ($first_radio_button ? 'checked' : '');
+                            $first_radio_button = false;
+                            echo "
+                            <input type='radio' class='btn-check' name='flatulenza' id='{$id_radio_button}' value='{$record['id']}' autocomplete='off' {$checked}>
+                            <label class='btn btn-outline-primary rounded-pill px-4' for='{$id_radio_button}'>{$record['description']}</label>";
+                        }
                     }
                 ?>
+            </div><br>
 
-            </select><br>
-
-            <label for="lambimento" class="form-label">lambimento:</label><br>
-            <select name="lambimento" id="lambimento" class="form-select">
+            <div class="d-flex gap-3">
+                <p class="h3">Lambimento:</p>
                 <?php
                     $conn = get_conn();
                     $sql = "select * from lambimento";
                     $res = $conn->query($sql);
                     if (!$res){
-                        echo "<option value='unknown'>dati non disponibili</option>";
-                    }
-                    foreach($res as $record){
-                        echo "<option value='" . $record['id'] . "'>" . $record['description'] . "</option>";
+                        echo "<p class='h3 text-danger'>dati non disponibili, errore interno database</p>";
+                    }else{
+                        //se va in errore la query usando else evito di eseguire questa parte inutile
+                        $first_radio_button = true;
+                        foreach($res as $record){
+                            $id_radio_button = "lambimento_{$record['id']}";
+                            $checked = ($first_radio_button ? 'checked' : '');
+                            $first_radio_button = false;
+                            echo "
+                            <input type='radio' class='btn-check' name='lambimento' id='{$id_radio_button}' value='{$record['id']}' autocomplete='off' {$checked}>
+                            <label class='btn btn-outline-primary rounded-pill px-4' for='{$id_radio_button}'>{$record['description']}</label>";
+                        }
                     }
                 ?>
-
-            </select><br>
+            </div><br>
 
             <div class="mb-3 mt-3">
             <label for="date" class="form-label">data delle rilevazioni: </label><br>
