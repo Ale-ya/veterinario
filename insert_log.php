@@ -35,7 +35,11 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 
 }
 
-
+// parametri classi bootstrap5 
+// https://getbootstrap.com/docs/5.0/utilities/text/#text-alignment
+// mb = marginbottm
+// pb = paddingbottom
+//
 
 ?>
 <!DOCTYPE html>
@@ -47,12 +51,33 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <title>Document</title>
 </head>
-<body class="d-flex justify-content-center bg-dark py-5 " >
-    <div class="p-5 text-center bg-light text-dark rounded-3">
+<body class="d-flex justify-content-center bg-dark py-5" >
+    <div class="p-5 text-center bg-light text-dark rounded-3 ">
         <form action="insert_log.php" method="post">
-            <h2> Form monitoraggio </h2>
-            <div class="d-flex gap-3">
-                <p class="h3">Animale</p>
+            <div class="d-flex justify-content-between align-items-center me-auto">
+                <p class="h1 mb-5 fw-bold text-primary me-2">Monitoraggio</p>
+                <a href="dashboard_owner.php" class="btn btn-secondary mb-5 ms-1">Torna alla home</a>
+            </div>
+
+            <!--
+            non funziona 
+            todo: chiedere al prof
+            <div class="d-flex  row">
+                <div class="col">
+                    <p class="h1 mb-5 fw-bold text-primary align-items-start"> Form monitoraggio </p>
+                </div>
+                <div class="col">
+                    <a href="dashboard_owner.php"  class="btn btn-secondary text-end align-items-end">Torna alla home</a>
+                </div>
+            </div>
+            -->
+            <div class="pb-3 mb-3 border-bottom border-3">
+                <!-- todo test con d-flex gap-3 -->
+
+                <p class="h4 fw-semibold mb-3 text-start">Animale: </p>
+
+                <!-- tentativo di far vedere il body anche quando ci sono tanti valori -->
+                <div class="d-flex flex-wrap gap-2" style="max-width: 70vw;">
                 <?php
                     if(isset($_SESSION['id'])){
                         $conn = get_conn();
@@ -79,10 +104,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
                         exit();
                     }
                 ?>
+                </div>
             </div><br>
 
-            <div class="d-flex gap-3">
-                <p class="h3">Vomito</p>
+            <div class="pb-3 mb-3 border-bottom border-3">
+                <p class="h4 fw-semibold mb-3 text-start">Vomito:</p>
+                <div class="d-flex flex-wrap gap-2" style="max-width: 70vw;">
                 <?php
                     $conn = get_conn();
                     $sql = "select * from vomito";
@@ -103,10 +130,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
                     }
                         
                 ?>
+                </div>
             </div><br>
 
-            <div class="d-flex gap-3">
-                <p class="h3">Frequenza feci</p>
+            <div class="pb-3 mb-3 border-bottom border-3">
+                <p class="h4 fw-semibold mb-3 text-start">Frequenza feci:</p>
+                <div class="d-flex flex-wrap gap-2" style="max-width: 70vw;">
                 <?php
                     $conn = get_conn();
                     $sql = "select * from frequenza_feci";
@@ -127,10 +156,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
                     }
                         
                 ?>
+                </div>
             </div><br>
 
-            <div class="d-flex gap-3">
-                <p class="h3">Dimagrimento</p>
+            <div class="pb-3 mb-3 border-bottom border-3">
+                <p class="h4 fw-semibold mb-3 text-start">Dimagrimento:</p>
+                <div class="d-flex flex-wrap gap-2" style="max-width: 70vw;">
                 <?php
                     $conn = get_conn();
                     $sql = "select * from dimagrimento";
@@ -150,9 +181,11 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
                         }
                     }
                 ?>
+                </div>
             </div><br>
-            <div class="d-flex gap-3">
-                <p class="h3">Atteggiamento riscontrato:</p>
+            <div class="pb-3 mb-3 border-bottom border-3">
+                <p class="h4 fw-semibold mb-3 text-start">Atteggiamento riscontrato:</p>
+                <div class="d-flex flex-wrap gap-2" style="max-width: 70vw;">
                 <?php
                     $conn = get_conn();
                     $sql = "select * from atteggiamento";
@@ -172,9 +205,11 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
                         }
                     }
                 ?>
+                </div>
             </div><br>
-            <div class="d-flex gap-3">
-                <p class="h3">Appetito:</p>
+            <div class="pb-3 mb-3 border-bottom border-3">
+                <p class="h4 fw-semibold mb-3 text-start">Appetito:</p>
+                <div class="d-flex flex-wrap gap-2" style="max-width: 70vw;">
                 <?php
                     $conn = get_conn();
                     $sql = "select * from appetito";
@@ -194,9 +229,11 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
                         }
                     }
                 ?>
+                </div>
             </div><br>
-            <div class="d-flex gap-3">
-                <p class="h3">Muco:</p>
+            <div class="pb-3 mb-3 border-bottom border-3">
+                <p class="h4 fw-semibold mb-3 text-start">Muco:</p>
+                <div class="d-flex flex-wrap gap-2" style="max-width: 70vw;">
                 <?php
                     $conn = get_conn();
                     $sql = "select * from muco";
@@ -216,10 +253,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
                         }
                     }
                 ?>
+                </div>
             </div><br>
 
-            <div class="d-flex gap-3">
-                <p class="h3">Sanguinamento animale:</p>
+            <div class="pb-3 mb-3 border-bottom border-3">
+                <p class="h4 fw-semibold mb-3 text-start">Sanguinamento animale:</p>
+                <div class="d-flex flex-wrap gap-2" style="max-width: 70vw;">
                 <?php
                     $conn = get_conn();
                     $sql = "select * from sangue";
@@ -239,10 +278,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
                         }
                     }
                 ?>
+                </div>
             </div><br>
        
-            <div class="d-flex gap-3">
-                <p class="h3">Flatulenza:</p>
+            <div class="pb-3 mb-3 border-bottom border-3">
+                <p class="h4 fw-semibold mb-3 text-start">Flatulenza:</p>
+                <div class="d-flex flex-wrap gap-2" style="max-width: 70vw;">
                 <?php
                     $conn = get_conn();
                     $sql = "select * from flatulenza";
@@ -262,10 +303,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
                         }
                     }
                 ?>
+                </div>
             </div><br>
 
-            <div class="d-flex gap-3">
-                <p class="h3">Lambimento:</p>
+            <div class="pb-3 mb-3 border-bottom border-3">
+                
+                <p class="h4 fw-semibold mb-3 text-start">Lambimento:</p>
+                <div class="d-flex flex-wrap gap-2" style="max-width: 70vw;">
                 <?php
                     $conn = get_conn();
                     $sql = "select * from lambimento";
@@ -285,14 +329,27 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
                         }
                     }
                 ?>
+                </div>
             </div><br>
 
             <div class="mb-3 mt-3">
-            <label for="date" class="form-label">data delle rilevazioni: </label><br>
-            <input type="date" name="date" id="date"><br><br>
+            <label for="date" class="form-label text-start fw-semibold h4  d-block">data delle rilevazioni: </label>
+            <!-- non togliere d-block perhce label è un elemento inline e d-block fa si che occupi tutta la riga da quel che ho capito-->
+            <?php 
+            //parte di codice presa da https://www.html.it/articoli/date-in-php-come-gestirle/
+            $data_rilevamento_minimo = date('Y-m-d');
+            $data_rilevamento_massimo   = date('Y-m-d', strtotime('-7 days'));
+
+            //todo: sistemare il problema del controllo da tastrier (puo evitare il min e il max con le freccette)
+            echo "<small class='text-muted d-block pb-1 text-start'> Data consentita da {$data_rilevamento_minimo} a {$data_rilevamento_massimo}</small>";
+            echo "<input type='date' class='form-control' name='date' id='date' min='{$data_rilevamento_massimo}' max='{$data_rilevamento_minimo}' required><br><br>";
+ 
+            ?>
             </div>
 
-            <button class="btn btn-success" type="submit">inserisci log</button>
+
+            <!-- grandezza e clasi https://getbootstrap.com/docs/5.0/components/buttons/ -->
+            <button class="btn btn-success btn-1g fs-2" type="submit">Inserisci log</button>
 
         </form>
     </div>

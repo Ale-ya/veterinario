@@ -91,8 +91,14 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
 
             <div class="mb-3 mt-3 form-floating">
-                <input class="form-control" type="date" name="date" id="date" required>
-                <label for="date" class="form-label">data di nascita:</label>
+            <?php 
+            //parte di codice presa da https://www.html.it/articoli/date-in-php-come-gestirle/
+            $data_età_minima = date('Y-m-d', strtotime('-1 days'));
+            $data_età_massima   = date('Y-m-d', strtotime('-25 year'));
+            echo " <input type='date' class='form-control' name='date' id='date' min='{$data_età_massima}' max='{$data_età_minima}'><br><br>";
+ 
+            ?>            
+            <label for="date" class="form-label">Data di nascita: </label>
             </div>
 
             <div class="d-flex gap-3">
@@ -100,11 +106,11 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
                 0 (false) = femmina
                 1 (true) = maschio
                 -->
-                <input type="radio" class="btn-check" name="sesso" id="sesso" value="1" autocomplete="off" checked>
-                <label class="btn btn-outline-primary rounded-pill px-4" for="sesso">Maschio</label>
+                <input type="radio" class="btn-check" name="sesso" id="sesso_m" value="1" autocomplete="off" checked>
+                <label class="btn btn-outline-primary rounded-pill px-4" for="sesso_m">Maschio</label>
 
-                <input type="radio" class="btn-check" name="sesso" id="sesso" value="0" autocomplete="off">
-                <label class="btn btn-outline-primary rounded-pill px-4" for="sesso">Femmina</label>
+                <input type="radio" class="btn-check" name="sesso" id="sesso_f" value="0" autocomplete="off">
+                <label class="btn btn-outline-primary rounded-pill px-4" for="sesso_f">Femmina</label>
             </div><br>
 
             <!--
