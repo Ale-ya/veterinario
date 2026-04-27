@@ -36,51 +36,61 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET"){
 
 <!DOCTYPE html>
 <html lang="it">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title></title>
-        <link href="css/style.css" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    </head>
-    <body>
-    <div class="container">
-        <?php 
-        if(isset($data['username']) && trim($data['username']) !== "" && isset($data['cognome']) && trim($data['cognome']) !== "" && isset($data['nome']) && trim($data['nome']) !== "" && isset($data['nome_paziente']) && trim($data['nome_paziente']) !== "" && isset($data['razza']) && trim($data['razza']) !== ""){
-            echo "<p class='h1'>Nome animale: ". $data['nome_paziente']." (". $data['razza'].")</p>";
-            echo "<p class='h2'>Nome proprietario: ". $data['nome']. " ". $data['cognome']. " (". $data['username']. ")</p>";
-        }
-        ?>
-        
-
-        <?php 
-
-        echo "<div class='mb-3 mt-3 row'>";
-        echo "<div class='col'><p class='h1'>Peso:</p><p class='h3'>{$data['peso']}</p></div>";
-        echo "<div class='col'><p class='h1'>Sesso:</p>";
-        if($data['sesso'] == 1){
-            echo "<p class='h3'>Femmina</p></div>";
-        }else{
-            echo "<p class='h3'>Maschio</p></div>";
-        }
-        echo "</div>";
-
-        echo "<div class='mb-3 mt-3 row'>";
-        echo "<div class='col'><p class='h1'>Data di nascita:</p><p class='h3'>{$data['data_nascita']}</p></div>";
-        echo "<div class='col'><p class='h1'>Terapie T0:</p><p class='h3'>{$data['terapie_T0']}</p></div>";
-        echo "</div>";
-
-        echo "<div class='mb-3 mt-3 row'>";
-        echo "<div class='col'><p class='h1'>Dieta T0:</p><p class='h3'>{$data['dieta_T0']}</p></div>";
-        echo "<div class='col'><p class='h1'>Sospetta diagnosi T0:</p><p class='h3'>{$data['sospetta_diagnosi_T0']}</p></div>";
-        echo "</div>";
-            
-        ?>
-
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body class="d-flex justify-content-center bg-dark py-5">
+<div class=" p-5 text-center bg-white text-dark rounded-3 " style="min-width: 70vw;">
+    <div class="d-flex justify-content-between align-items-center me-auto">
+        <p class="h1 mb-5 fw-bold text-primary me-4">Informazioni Generali</p>
+        <a href="dashboard_vet.php" class="btn btn-secondary mb-5 ms-1">Torna alla home</a>
     </div>
-    </body>
+    <?php 
+    $values= ["username","cognome","nome","nome_paziente","razza","peso","data_nascita", "terapie_T0","dieta_T0", "sospetta_diagnosi_T0","sesso"];
+    foreach ($values as $variable) {
+        if(!isset($data[$variable])){
+            http_response_code(500);
+            echo "<h1> alcuni dati sul paziente non sono disponibili</h1>";
+            var_dump($data);
+            exit();
+        }
+    }
+
+    echo "<p class='h2 mb-5 fw-semibold text-dark me-4'>Nome animale: ". $data['nome_paziente']." (". $data['razza'].")</p>";
+    echo "<p class='h2 mb-5 fw-semibold text-dark me-4'>Nome proprietario: ". $data['nome']. " ". $data['cognome']. " (". $data['username']. ")</p>";
+    
+
+
+    echo "<div class='mb-3 mt-3 row'>";
+    echo "<div class='col'><p class='h3 mb-5 fw-semibold text-dark me-4'>Peso: {$data['peso']} kg</p></div>";
+    echo "<div class='col'><p class='h3 mb-5 fw-semibold text-dark me-4'>Sesso: ";
+    if($data['sesso'] == 1){
+        echo "Femmina</p></div>";
+    }else{
+        echo "Maschio</p></div>";
+    }
+    echo "</div>";
+
+    echo "<div class='mb-3 mt-3 row'>";
+    echo "<div class='col'><p class='h3 mb-5 fw-semibold text-dark me-4'>Data di nascita: {$data['data_nascita']}</p></div>";
+    echo "<div class='col'><p class='h3 mb-5 fw-semibold text-dark me-4'>Terapie T0: {$data['terapie_T0']}</p></div>";
+    echo "</div>";
+
+    echo "<div class='mb-3 mt-3 row'>";
+    echo "<div class='col'><p class='h3 mb-5 fw-semibold text-dark me-4'>Dieta T0: {$data['dieta_T0']}</p></div>";
+    echo "<div class='col'><p class='h3 mb-5 fw-semibold text-dark me-4'>Sospetta diagnosi T0: {$data['sospetta_diagnosi_T0']}</p></div>";
+    echo "</div>";
+        
+    ?>
+
+
+</div>
+</body>
 </html>
 
 

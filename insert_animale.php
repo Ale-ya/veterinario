@@ -95,7 +95,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
             //parte di codice presa da https://www.html.it/articoli/date-in-php-come-gestirle/
             $data_età_minima = date('Y-m-d', strtotime('-1 days'));
             $data_età_massima   = date('Y-m-d', strtotime('-25 year'));
-            echo " <input type='date' class='form-control' name='date' id='date' min='{$data_età_massima}' max='{$data_età_minima}'><br><br>";
+            echo " <input type='date' class='form-control' name='date' id='date' min='{$data_età_massima}' max='{$data_età_minima}' value='{$data_età_minima}'><br><br>";
  
             ?>            
             <label for="date" class="form-label">Data di nascita: </label>

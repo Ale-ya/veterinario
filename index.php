@@ -1,8 +1,3 @@
-<?php
-session_start();
-
-
-?>
 
 
 <!DOCTYPE html>
@@ -18,6 +13,9 @@ session_start();
 
     <div class="p-5 text-center bg-secondary text-white rounded-3">
         <h1> Accesso all'applicazione: </h1>
+        <a href="choose_signin_type.php" class="btn btn-secondary mb-5 ms-1">Sign-in</a>
+        <a href="login.php" class="btn btn-secondary mb-5 ms-1">Login</a>
+        <!--
         <form action="choose_signin_type.php" method="POST">
             <div class="mb-3 mt-3">
             <input type="hidden" name="type" value="vet">
@@ -31,6 +29,7 @@ session_start();
             <button class="btn btn-primary" type="submit">Login</button>
             </div>
         </form>
+        -->
     </div>
 
 </body>

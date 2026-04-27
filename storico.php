@@ -32,8 +32,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET"){
             //TODO button per tornare alla home
             //
         }
+        $sql = "select nome_paziente from pazienti where id = {$id_paziente}";
+        $res = $conn->query($sql);
+        $nome = $res->fetch_assoc();
 
-        $sql = "SELECT data_di_riferimento, a.peso as peso_appetito, att.peso as peso_atteggiamento, d.peso as peso_dimagrimento, f.peso as frequenza_feci_peso, s.peso as sangue_peso, m.peso as muco_peso, flat.peso as flatulenza_peso, lamb.peso as lambimento_peso, v.peso as vomito_peso FROM `log` JOIN appetito a ON id_appetito = a.id JOIN atteggiamento att ON id_atteggiamento = att.id JOIN dimagrimento d on d.id = id_dimagrimento JOIN frequenza_feci f on id_frequenza_feci = f.id JOIN sangue s ON id_sangue=s.id JOIN muco m ON m.id = id_muco JOIN flatulenza flat ON flat.id = id_flatulenza JOIN lambimento lamb ON lamb.id = id_lambimento JOIN vomito v ON v.id = id_vomito WHERE id_paziente = {$id_paziente}; ";
+        $sql = "SELECT data_di_riferimento, a.peso as peso_appetito, att.peso as peso_atteggiamento, d.peso as peso_dimagrimento, f.peso as frequenza_feci_peso, s.peso as sangue_peso, m.peso as muco_peso, flat.peso as flatulenza_peso, lamb.peso as lambimento_peso, v.peso as vomito_peso FROM `log` JOIN appetito a ON id_appetito = a.id JOIN atteggiamento att ON id_atteggiamento = att.id JOIN dimagrimento d on d.id = id_dimagrimento JOIN frequenza_feci f on id_frequenza_feci = f.id JOIN sangue s ON id_sangue=s.id JOIN muco m ON m.id = id_muco JOIN flatulenza flat ON flat.id = id_flatulenza JOIN lambimento lamb ON lamb.id = id_lambimento JOIN vomito v ON v.id = id_vomito  WHERE id_paziente = {$id_paziente}; ";
+
         $res = $conn->query($sql);
         if(!$res){
             $str = "errore durante la connessione al database";
@@ -65,6 +69,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET"){
             }
         }
 
+
     }
 }
 
@@ -84,40 +89,49 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET"){
 </head>
 <body class="d-flex justify-content-center bg-dark py-5">
 
-    <div class="p-5 text-center bg-white text-dark rounded-3 ">
+    <div class=" p-5 text-center bg-white text-dark rounded-3 " style="min-width: 70vw;">
         <div class="d-flex justify-content-between align-items-center me-auto">
-            <p class="h1 mb-5 fw-bold text-primary me-4">Benvenuta/o, <?php echo  ($_SESSION['usertype'] == 'vet' ? 'dottor ' : '') . $_SESSION['username'] ?></p><br><br>
+            <p class="h1 mb-5 fw-bold text-primary me-4">Storico di <?php echo $nome['nome_paziente'] ?? 'errore database '?> </p><br><br>
             <a href="dashboard_vet.php" class="btn btn-secondary mb-5 ms-1">Torna alla home</a>
         </div>
 
+        <p class="h4 fw-semibold mb-3 text-start">Vomito: </p>
         <div class="p-5 text-center bg-light text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
             <canvas id="vomito"></canvas>
         </div>
 
+        <p class="h4 fw-semibold mb-3 text-start">Lambimento: </p>
         <div class="p-5 text-center bg-white text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
             <canvas id="lambimento"></canvas>
         </div>
 
+        <p class="h4 fw-semibold mb-3 text-start">Appetito: </p>
         <div class="p-5 text-center bg-light text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
             <canvas id="appetito"></canvas>
         </div>
 
+        <p class="h4 fw-semibold mb-3 text-start">Atteggiamento: </p>
         <div class="p-5 text-center bg-white text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
             <canvas id="atteggiamento"></canvas>
         </div>
 
+        <p class="h4 fw-semibold mb-3 text-start">Dimagrimento: </p>
         <div class="p-5 text-center bg-light text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
             <canvas id="dimagrimento"></canvas>
         </div>
+        <p class="h4 fw-semibold mb-3 text-start">Frequenza feci: </p>
         <div class="p-5 text-center bg-white text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
             <canvas id="frequenza_feci"></canvas>
         </div>
+        <p class="h4 fw-semibold mb-3 text-start">Sangue: </p>
         <div  class="p-5 text-center bg-light text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
             <canvas id="sangue"></canvas>
         </div>
+        <p class="h4 fw-semibold mb-3 text-start">Muco: </p>
         <div class="p-5 text-center bg-white text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
             <canvas id="muco"></canvas>
         </div>
+        <p class="h4 fw-semibold mb-3 text-start">Flatulenza: </p>
         <div class="p-5 text-center bg-light text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
             <canvas id="flatulenza"></canvas>
         </div>
