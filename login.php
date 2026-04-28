@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($type == "vet") {
             $table = "veterinari";
-        } elseif ($type == "customer") {
+        } elseif ($type == "owner") {
             $table = "proprietari";
         } else {
             die("Tipo non valido");
@@ -86,22 +86,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body class="d-flex vh-100 justify-content-center align-items-center bg-dark " >
 
-    <div class="p-5 text-center bg-secondary text-white rounded-3">
-        <h1>LOGIN</h1>
+    <div class="p-5 text-center bg-light text-dark rounded-3">
+        <p class="h1 mb-3 fw-bold text-primary me-2"> Login </p>
+
         <h1><?php echo $str ?? ''?></h1>
         <form action="login.php" method="post">
+            <div class="d-flex flex-wrap gap-2" style="max-width: 70vw;">
+                <input type='radio' class='btn-check' name='type' id='veterinario' value='vet' autocomplete='off' checked>
+                <label class='btn btn-outline-primary rounded-pill px-4' for='veterinario'> Veterinario </label>
+                <input type='radio' class='btn-check' name='type' id='customer' value='owner' autocomplete='off'>
+                <label class='btn btn-outline-primary rounded-pill px-4' for='customer'> Proprietario </label>
+            </div>
+            <!--
             <label for="type" class="form-label">Accedi come: </label><br>
             <select name="type" id="type" class="form-select">
                 <option value="vet">Veterinario</option>
                 <option value="customer">Cliente</option>
             </select>
-            <div class="mb-3 mt-3">
-                <label for="username" class="form-label">Username: </label><br>
-                <input  class="form-control" type="text" name="username" id="username" required>
+            -->
+            <div class="mb-3 mt-3 form-floating">
+                <input  class="form-control" type="text" name="username" id="username" required placeholder="">
+                <label for="username" class="form-label">Username: </label>
             </div>
-            <div class="mb-3 mt-3">
-                <label for="password" class="form-label">Password: </label><br>
-                <input class="form-control" type="password" name="password" id="password" required>
+            <div class="mb-3 mt-3 form-floating">
+                <input class="form-control" type="password" name="password" id="password" required placeholder="">
+                <label for="password" class="form-label">Password: </label>
             </div>
             <button class="btn btn-success" type="submit">Login</button>
         </form>

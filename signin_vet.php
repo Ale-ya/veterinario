@@ -73,26 +73,45 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <title>signin vet</title>
 </head>
-<body>
-    <h1>sign-in vet</h1>
-    <form action="signin_vet.php" method="post">
-        <label for="nome">Nome: </label><br>
-        <input type="text" name="nome" id="nome" placeholder="inserire il proprio nome" autocomplete="off" required><br>
-        <label for="cognome">Cognome: </label><br>
-        <input type="text" name="cognome" id="cognome" placeholder="inserire il proprio cognome" autocomplete="off" required><br>
-        <label for="email">Email: </label><br>
-        <input type="text" name="email" id="email" placeholder="inserire email" autocomplete="off" required><br>
-        <label for="username">Username: </label><br>
-        <input type="text" name="username" id="username" placeholder="inserire username" autocomplete="off" required><br>
-        <label for="password">Password: </label><br>
-        <input type="password" name="password" id="password" placeholder="inserire password" autocomplete="off" required><br>
+<body class="d-flex p-3 justify-content-center align-items-center bg-dark ">
+    <div class="p-4  bg-secondary text-white rounded-3">
 
-        <input type="submit" value="sign-in">
+        <p class="h1 mb-5 fw-bold text-primary me-2">sign-in vet</p>
+        <form action="signin_vet.php" method="post">
+            <div class="mb-1 mt-1 form-floating" style="min-width: 45vw;">
+            <input class="form-control" type="text" name="nome" id="nome" placeholder="inserire il proprio nome" autocomplete="off" required><br>
+            <label class="form-label" for="nome">Nome: </label>
+            </div>
 
-    </form>
-    <h1><?php echo $error ?? '' ?></h1>
+            <div class="mb-1 mt-1 form-floating" style="min-width: 45vw;">
+            <input class="form-control" type="text" name="cognome" id="cognome" placeholder="inserire il proprio cognome" autocomplete="off" required><br>
+            <label class="form-label" for="cognome">Cognome: </label>
+            </div>
+
+            <div class="mb-1 mt-1 form-floating" style="min-width: 45vw;">
+            <input class="form-control" type="text" name="email" id="email" placeholder="inserire email" autocomplete="off" required><br>
+            <label class="form-label" for="email">Email: </label>
+            </div>
+
+            <div class="mb-1 mt-1 form-floating" style="min-width: 45vw;">
+            <input class="form-control" type="text" name="username" id="username" placeholder="inserire username" autocomplete="off" required><br>
+            <label class="form-label" for="username">Username: </label>
+            </div>
+
+            <div class="mb-1 mt-1 form-floating" style="min-width: 45vw;">
+            <input class="form-control" type="password" name="password" id="password" placeholder="inserire password" autocomplete="off" required><br>
+            <label class="form-label" for="password">Password: </label>
+            </div>
+
+            <button class="btn btn-success" type="submit">Inserisci animale</button>
+
+        </form>
+        <p class="h1 mb-5 fw-bold text-primary me-2"><?php echo $error ?? '' ?></p>
+    </div>
 </body>
 </html>
 

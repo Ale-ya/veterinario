@@ -11,10 +11,10 @@
 </head>
 <body class="d-flex vh-100 justify-content-center align-items-center bg-dark " >
 
-    <div class="p-5 text-center bg-secondary text-white rounded-3">
-        <h1> Accesso all'applicazione: </h1>
-        <a href="choose_signin_type.php" class="btn btn-secondary mb-5 ms-1">Sign-in</a>
-        <a href="login.php" class="btn btn-secondary mb-5 ms-1">Login</a>
+    <div class="p-5 text-center bg-light text-dark rounded-3">
+        <p class="h1 mb-5 fw-bold text-primary me-2"> Accesso all'applicazione: </p>
+        <a href="choose_signin_type.php" class="btn btn-primary mb-5 ms-1">Sign-in</a>
+        <a href="login.php" class="btn btn-primary mb-5 ms-1">Login</a>
         <!--
         <form action="choose_signin_type.php" method="POST">
             <div class="mb-3 mt-3">

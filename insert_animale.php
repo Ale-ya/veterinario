@@ -54,18 +54,23 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Aggiunta di un nuovo animale</title>
 </head>
 <body class=" d-flex justify-content-center bg-dark py-5" >
 
     <div class="p-5  bg-light text-muted rounded-3">
-        <h1>Questionario per l'aggiunta di un animale</h1>
+        <div class="d-flex justify-content-between align-items-center ">
+            <p class="h1 mb-5 fw-bold text-primary me-3">Aggiungi un animale</p>
+            <!-- <i> per mettere le icone è consigliato dalla documentazione -->
+            <a href="dashboard_owner.php" class="btn btn-secondary mb-5 ms-1 "><i class="bi bi-house me-1"></i> Torna alla home</a>
+        </div>
         <form action="insert_animale.php" method="post">
 
             <div class="mb-3 mt-3 form-floating">
                 <!-- placeholder necessario per l'animzaione --> 
                 <input  class="form-control" type="text" name="nome" id="nome" required placeholder=" inseriere il nome ">
-                <label for="nome" >nome animale:</label>
+                <label class="form-label" for="nome" >nome animale:</label>
             </div>
             <div class="mb-3 mt-3 form-floating">
                 <input  class="form-control" type="number" name="peso" id="peso" min="1" step="0.1" required>
@@ -97,7 +102,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
             $data_età_massima   = date('Y-m-d', strtotime('-25 year'));
             echo " <input type='date' class='form-control' name='date' id='date' min='{$data_età_massima}' max='{$data_età_minima}' value='{$data_età_minima}'><br><br>";
  
-            ?>            
+            ?>
             <label for="date" class="form-label">Data di nascita: </label>
             </div>
 
