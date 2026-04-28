@@ -13,7 +13,7 @@ require_once("connection/check_owner.php");
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <title>Dashboard - Pet Monitoring</title>
+    <title>Dashboard</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -38,20 +38,20 @@ require_once("connection/check_owner.php");
                 
                 <p class="h1 mb-2 fw-bold text-primary ">
                     Benvenuta/o, <br>
-                    <strong><?php echo ($_SESSION['type'] == 'vet' ? 'dottor ' : '') . htmlspecialchars($_SESSION['username']); ?></strong>
+                    <strong><?php echo htmlspecialchars($_SESSION['username']); ?></strong>
                 </p>
                 
                 <!-- span(inline)? -->
                 <div class="badge bg-warning text-dark mb-4">
-                    <?php echo $_SESSION['type'] == 'vet' ? 'Veterinario' : 'Proprietario'; ?>
+                    <?php echo $_SESSION['usertype'] == 'vet' ? 'Veterinario' : 'Proprietario'; ?>
                 </div>
                 
                 <!-- per icone bootstrap "bi bi{nome icona trovato in https://icons.getbootstrap.com/}"-->
                 <div class="pb-2 mt-4 d-grid gap-3 border-bottom border-3 border-secondary">
-                    <a href="insert_log.php" class="btn btn-light btn-lg bg-warning">
+                    <a href="insert_log.php" class="btn btn-warning btn-lg ">
                         <i class="bi bi-clipboard-plus me-2"></i> Inserisci nuovo monitoraggio
                     </a>
-                    <a href="insert_animale.php" class="btn btn-outline-light btn-lg bg-primary">
+                    <a href="insert_animale.php" class="btn btn-primary btn-lg ">
                         <i class="bi bi-plus-circle me-2"></i> Inserisci animale
                     </a>
                 </div>

@@ -84,15 +84,17 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET"){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="d-flex justify-content-center bg-dark py-5">
 
     <div class=" p-5 text-center bg-white text-dark rounded-3 " style="min-width: 70vw;">
-        <div class="d-flex justify-content-between align-items-center me-auto">
-            <p class="h1 mb-5 fw-bold text-primary me-4">Storico di <?php echo $nome['nome_paziente'] ?? 'errore database '?> </p><br><br>
-            <a href="dashboard_vet.php" class="btn btn-secondary mb-5 ms-1">Torna alla home</a>
+        <div class="d-flex justify-content-between align-items-center ">
+            <p class="h1 mb-5 fw-bold text-primary me-3">Storico di <?php echo $nome['nome_paziente'] ?? 'errore database '?> </p>
+            <!-- <i> per mettere le icone è consigliato dalla documentazione -->
+            <a href="dashboard_owner.php" class="btn btn-secondary mb-5 ms-1 "><i class="bi bi-house me-1"></i> Torna alla home</a>
         </div>
 
         <p class="h4 fw-semibold mb-3 text-start">Vomito: </p>
