@@ -31,6 +31,7 @@ $res = $conn->query($sql);
     <p class="h1 mb-2 fw-bold text-primary ">
         Benvenuta/o, dottor <br>
         <strong><?php echo htmlspecialchars($_SESSION['username']); ?></strong>
+        <!-- strong utile per rendere piùvisibile non necessario -->
     </p>
     
     <!-- span(inline)? -->

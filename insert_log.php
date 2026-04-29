@@ -344,7 +344,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 
             //todo: sistemare il problema del controllo da tastrier (puo evitare il min e il max con le freccette)
             echo "<small class='text-muted d-block pb-1 text-start'> Data consentita da {$data_rilevamento_minimo} a {$data_rilevamento_massimo}</small>";
-            echo "<input type='date' class='form-control' name='date' id='date' min='{$data_rilevamento_massimo}' max='{$data_rilevamento_minimo}' required><br><br>";
+            echo "<input type='date' class='form-control' name='date' id='date' min='{$data_rilevamento_massimo}' max='{$data_rilevamento_minimo}' value='{$data_rilevamento_minimo}' required><br><br>";
  
             ?>
             </div>

@@ -107,7 +107,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
             <label class="form-label" for="password">Password: </label>
             </div>
 
-            <button class="btn btn-success" type="submit">Inserisci animale</button>
+            <button class="btn btn-success" type="submit">Crea account</button>
 
         </form>
         <p class="h1 mb-5 fw-bold text-primary me-2"><?php echo $error ?? '' ?></p>
