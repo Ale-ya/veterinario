@@ -74,46 +74,49 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <title>signin vet</title>
 </head>
 <body class="d-flex p-3 justify-content-center align-items-center bg-dark ">
-    <div class="p-4  bg-secondary text-white rounded-3">
+    <div class="p-4  bg-white text-dark rounded-3">
 
-        <p class="h1 mb-5 fw-bold text-primary me-2">sign-in vet</p>
+        <div class="d-flex justify-content-between align-items-center ">
+            <p class="h1 mb-5 fw-bold text-primary me-3">Sign In</p>
+            <!-- <i> per mettere le icone è consigliato dalla documentazione -->
+            <a href="index.php" class="btn btn-secondary mb-5 ms-1 "><i class="bi bi-arrow-left me-1"></i> Torna indietro</a>
+        </div>
         <form action="signin_vet.php" method="post">
             <div class="mb-1 mt-1 form-floating" style="min-width: 45vw;">
-            <input class="form-control" type="text" name="nome" id="nome" placeholder="inserire il proprio nome" autocomplete="off" required><br>
-            <label class="form-label" for="nome">Nome: </label>
+            <input class="form-control " type="text" name="nome" id="nome" placeholder="inserire il proprio nome" autocomplete="off" required><br>
+            <label class="form-label " for="nome">Nome: </label>
             </div>
 
             <div class="mb-1 mt-1 form-floating" style="min-width: 45vw;">
-            <input class="form-control" type="text" name="cognome" id="cognome" placeholder="inserire il proprio cognome" autocomplete="off" required><br>
+            <input class="form-control " type="text" name="cognome" id="cognome" placeholder="inserire il proprio cognome" autocomplete="off" required><br>
             <label class="form-label" for="cognome">Cognome: </label>
             </div>
 
             <div class="mb-1 mt-1 form-floating" style="min-width: 45vw;">
-            <input class="form-control" type="text" name="email" id="email" placeholder="inserire email" autocomplete="off" required><br>
+            <input class="form-control " type="text" name="email" id="email" placeholder="inserire email" autocomplete="off" required><br>
             <label class="form-label" for="email">Email: </label>
             </div>
 
             <div class="mb-1 mt-1 form-floating" style="min-width: 45vw;">
-            <input class="form-control" type="text" name="username" id="username" placeholder="inserire username" autocomplete="off" required><br>
+            <input class="form-control " type="text" name="username" id="username" placeholder="inserire username" autocomplete="off" required><br>
             <label class="form-label" for="username">Username: </label>
             </div>
 
-            <div class="mb-1 mt-1 form-floating" style="min-width: 45vw;">
-            <input class="form-control" type="password" name="password" id="password" placeholder="inserire password" autocomplete="off" required><br>
+            <div class="mb-1 mt-1 form-floating " style="min-width: 45vw;">
+            <input class="form-control " type="password" name="password" id="password" placeholder="inserire password" autocomplete="off" required><br>
             <label class="form-label" for="password">Password: </label>
             </div>
 
-            <button class="btn btn-success" type="submit">Crea account</button>
+            <button class="btn btn-success" type="submit"> <i class="bi bi-person-plus-fill me-3"></i> Crea Account</button>
 
         </form>
         <p class="h1 mb-5 fw-bold text-primary me-2"><?php echo $error ?? '' ?></p>
     </div>
 </body>
 </html>
-
-
 

@@ -75,27 +75,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Login Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body class="d-flex vh-100 justify-content-center align-items-center bg-dark " >
 
     <div class="p-5 text-center bg-light text-dark rounded-3">
-        <p class="h1 mb-3 fw-bold text-primary me-2"> Login </p>
-
+        <div class="d-flex justify-content-between align-items-center ">
+            <p class="h1 mb-5 fw-bold text-primary me-3">Login</p>
+            <!-- <i> per mettere le icone è consigliato dalla documentazione -->
+            <a href="index.php" class="btn btn-white  mb-5 ms-1 p-0"><i class="bi bi-arrow-left-circle text-primary fs-2"  ></i></a>
+        </div>
         <h1><?php echo $str ?? ''?></h1>
         <form action="login.php" method="post">
             <div class="d-flex flex-wrap gap-2" style="max-width: 70vw;">
                 <input type='radio' class='btn-check' name='type' id='veterinario' value='vet' autocomplete='off' checked>
-                <label class='btn btn-outline-primary rounded-pill px-4' for='veterinario'> Veterinario </label>
+                <label class='btn btn-outline-primary rounded-pill px-3 px-sm-4 ' for='veterinario'> Veterinario </label>
                 <input type='radio' class='btn-check' name='type' id='customer' value='owner' autocomplete='off'>
-                <label class='btn btn-outline-primary rounded-pill px-4' for='customer'> Proprietario </label>
+                <label class='btn btn-outline-primary rounded-pill px-3 px-sm-4 ' for='customer'> Proprietario </label>
             </div>
             <!--
             <label for="type" class="form-label">Accedi come: </label><br>
@@ -112,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input class="form-control" type="password" name="password" id="password" required placeholder="">
                 <label for="password" class="form-label">Password: </label>
             </div>
-            <button class="btn btn-success" type="submit">Login</button>
+            <button class="btn btn-success" type="submit"><i class="bi bi-box-arrow-in-right me-1"></i> Login</button>
         </form>
     </div>
 

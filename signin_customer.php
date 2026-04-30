@@ -60,9 +60,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 
             header("Location: dashboard_owner.php");
             die();
+
         }else{
+
             header("Location: signin_customer?status=error");
             die();
+
         }
 
     }
@@ -75,42 +78,47 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <title>LOGIN</title>
 </head>
-<body class="d-flex vh-100 justify-content-center align-items-center bg-dark " >
+<body class="d-flex vh-100 justify-content-center align-items-center bg-dark p-5" >
 
-    <div class="p-5  bg-secondary text-white rounded-3">
-        <h1>Sign-in</h1>
+    <div class="p-5  bg-white text-white rounded-3">
+        <div class="d-flex justify-content-between align-items-center ">
+            <p class="h1 mb-4 fw-bold text-primary me-5">Sign In</p>
+            <!-- <i> per mettere le icone è consigliato dalla documentazione -->
+            <a href="index.php" class="btn btn-white text-muted mb-4 ms-1 "><i class="bi bi-arrow-left text-muted me-1"></i> Torna indietro</a>
+        </div>
         <form action="signin_customer.php" method="post">
             
-            <div class="mb-3 mt-3">
-            <label for="nome" class="form-label">Nome: </label><br>
+            <div class="mb-3 mt-3 form-floating">
             <input  class="form-control" type="text" name="nome" id="nome" placeholder="inserire il proprio nome" autocomplete="off" required>
+            <label for="nome" class="form-label">Nome: </label>
             </div>
 
-            <div class="mb-3 mt-3">
-            <label for="cognome" class="form-label">Cognome: </label><br>
+            <div class="mb-3 mt-3 form-floating">
             <input  class="form-control" type="text" name="cognome" id="cognome" placeholder="inserire il proprio cognome" autocomplete="off" required>
+            <label for="cognome" class="form-label">Cognome: </label>
             </div>
 
-            <div class="mb-3 mt-3">
-            <label for="email" class="form-label">Email: </label><br>
+            <div class="mb-3 mt-3 form-floating">
             <input class="form-control"  type="text" name="email" id="email" placeholder="inserire email" autocomplete="off" required>
+            <label for="email" class="form-label">Email: </label>
             </div>
             
-            <div class="mb-3 mt-3">
-            <label for="username" class="form-label">Username: </label><br>
+            <div class="mb-3 mt-3 form-floating">
             <input  class="form-control" type="text" name="username" id="username" placeholder="inserire username" autocomplete="off" required>
+            <label for="username" class="form-label">Username: </label>
             </div>
 
-            <div class="mb-3 mt-3">
-            <label for="password" class="form-label">Password: </label><br>
+            <div class="mb-3 mt-3 form-floating">
             <input  class="form-control" type="password" name="password" id="password" placeholder="inserire password" autocomplete="off" required>
+            <label for="password" class="form-label">Password: </label>
             </div>
 
             <label for="vet" class="form-label">vet:</label>
-            <select name="vet" id="vet"  class="form-select">
+            <select name="vet" id="vet"  class="form-select mb-3">
                 <option value="none"> non associarti a nessun vet </option>
                 <?php
                     //require("connection/connection.php");
@@ -127,16 +135,9 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
                 ?>
             </select><br>
 
-            <button class="btn btn-success" type="submit">Crea account</button>
+            <button class="btn btn-success" type="submit"><i class="bi bi-person-plus-fill me-3 "></i> Crea account</button>
 
         </form>
     </div>
 </body>
 </html>
-
-
-
-
-
-
-
