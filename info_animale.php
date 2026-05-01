@@ -39,58 +39,70 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET"){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
-    <link href="css/style.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body class="d-flex justify-content-center bg-dark py-5">
-<div class=" p-5 text-center bg-white text-dark rounded-3 " style="min-width: 70vw;">
-    <div class="d-flex justify-content-between align-items-center me-auto">
-        <p class="h1 mb-5 fw-bold text-primary me-4">Informazioni Generali</p>
-        <a href="dashboard_vet.php" class="btn btn-secondary mb-5 ms-1">Torna alla home</a>
-    </div>
-    <?php 
+    <?php
     $values= ["username","cognome","nome","nome_paziente","razza","peso","data_nascita", "terapie_T0","dieta_T0", "sospetta_diagnosi_T0","sesso"];
     foreach ($values as $variable) {
         if(!isset($data[$variable])){
             http_response_code(500);
-            echo "<h1> alcuni dati sul paziente non sono disponibili</h1>";
-            var_dump($data);
+            echo "<p class='h2 mb-4 fw-semibold text-warning'> alcuni dati sul paziente non sono disponibili</p>";
             exit();
         }
     }
-
-    echo "<p class='h2 mb-5 fw-semibold text-dark me-4'>Nome animale: ". $data['nome_paziente']." (". $data['razza'].")</p>";
-    echo "<p class='h2 mb-5 fw-semibold text-dark me-4'>Nome proprietario: ". $data['nome']. " ". $data['cognome']. " (". $data['username']. ")</p>";
-    
-
-
-    echo "<div class='mb-3 mt-3 row'>";
-    echo "<div class='col'><p class='h3 mb-5 fw-semibold text-dark me-4'>Peso: {$data['peso']} kg</p></div>";
-    echo "<div class='col'><p class='h3 mb-5 fw-semibold text-dark me-4'>Sesso: ";
-    if($data['sesso'] == 1){
-        echo "Femmina</p></div>";
-    }else{
-        echo "Maschio</p></div>";
-    }
-    echo "</div>";
-
-    echo "<div class='mb-3 mt-3 row'>";
-    echo "<div class='col'><p class='h3 mb-5 fw-semibold text-dark me-4'>Data di nascita: {$data['data_nascita']}</p></div>";
-    echo "<div class='col'><p class='h3 mb-5 fw-semibold text-dark me-4'>Terapie T0: {$data['terapie_T0']}</p></div>";
-    echo "</div>";
-
-    echo "<div class='mb-3 mt-3 row'>";
-    echo "<div class='col'><p class='h3 mb-5 fw-semibold text-dark me-4'>Dieta T0: {$data['dieta_T0']}</p></div>";
-    echo "<div class='col'><p class='h3 mb-5 fw-semibold text-dark me-4'>Sospetta diagnosi T0: {$data['sospetta_diagnosi_T0']}</p></div>";
-    echo "</div>";
-        
     ?>
+    <title>Informazioni <?php echo $data['nome_paziente']?></title>
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body class="d-flex justify-content-center bg-dark p-3 p-sm-5 ">
+<div class="container-fluid p-3 p-sm-5 text-center bg-white text-dark rounded-3" style="min-width: 70vw;">
+    <div class="d-flex justify-content-between align-items-center me-auto">
+        <p class="h1 mb-5 fw-bold text-primary me-4">Informazioni Generali</p>
+        <a href="dashboard_vet.php" class="btn btn-secondary mb-5 ms-1"><i class="bi  bi-house me-1"></i>Torna alla home</a>
+    </div>
+    
+    <p class='h3 mb-5 fw-semibold text-dark me-4'>Nome animale: <?php echo $data['nome_paziente'] ." (". $data['razza'] ?> )</p>
+    <p class='h3 mb-5 fw-semibold text-dark me-4'>Nome proprietario: <?php echo $data['nome']. " ". $data['cognome']. " (". $data['username']?> )</p>
 
-
-</div>
-</body>
+    <!-- mantenere h-100 per avere altezza uniforme tra le righe e le colonne  -->
+    <div class="row g-4 mt-2">
+        <div class="col-md-4">
+            <div class="border rounded p-3 bg-light h-100 text-start text-break  ">
+                <p class="h5 fw-semibold text-dark mb-0">Peso: <small class="text-muted d-flex mt-1"><?php echo $data['peso']; ?>kg</small></p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border rounded p-3 bg-light h-100 text-start text-break  ">
+                <p class="h5 fw-semibold text-dark mb-0">
+                    Sesso: <small class="text-muted d-flex mt-1"><?php echo ($data['sesso'] == 1) ? "Femmina" : "Maschio"; ?></small>
+                </p>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="border rounded p-3 bg-light h-100 text-start text-break  ">
+                <p class="h5 fw-semibold text-dark mb-0">Data di nascita: <small class="text-muted d-flex mt-1"><?php echo $data['data_nascita']; ?></small></p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border rounded p-3 bg-light h-100 text-start text-break  ">
+                <p class="h5 fw-semibold text-dark mb-0">Terapie T0: <small class="text-muted d-flex mt-1"><?php echo $data['terapie_T0']; ?></small></p>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="border rounded p-3 bg-light h-100 text-start  text-break ">
+                <p class="h5 fw-semibold text-dark mb-0">Dieta T0: <small class="text-muted d-flex mt-1"><?php echo $data['dieta_T0']; ?></small></p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border rounded p-3 bg-light h-100 text-start text-break ">
+                <p class="h5 fw-semibold text-dark mb-0">Sospetta diagnosi T0: <small class="text-muted d-flex mt-1"><?php echo $data['sospetta_diagnosi_T0']; ?></small></p>
+            </div>
+        </div>
+    </div>
+</div></body>
 </html>
 
 

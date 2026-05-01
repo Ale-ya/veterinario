@@ -17,8 +17,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET"){
 if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
     if(isset($_POST["nome"]) && isset($_POST["cognome"])  && isset($_POST["email"]) && isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["vet"])){
         $nome = htmlspecialchars($_POST["nome"]);
-        $cognome = htmlspecialchars($_POST["cognome"]);
-        $email = htmlspecialchars($_POST["email"]);
+        $cognome = htmlspecialchars($_POST["cognome"]); $email = htmlspecialchars($_POST["email"]);
         $username = htmlspecialchars($_POST["username"]);
         $pass = htmlspecialchars($_POST["password"]);
         $id_vet = htmlspecialchars($_POST["vet"]);
@@ -82,11 +81,11 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <title>LOGIN</title>
 </head>
-<body class="d-flex vh-100 justify-content-center align-items-center bg-dark p-5" >
+<body class="d-flex  justify-content-center align-items-center bg-dark p-3 p-sm-5 " >
 
-    <div class="p-5  bg-white text-white rounded-3">
+    <div class="p-4 p-sm-5 bg-white text-white rounded-3">
         <div class="d-flex justify-content-between align-items-center ">
-            <p class="h1 mb-4 fw-bold text-primary me-5">Sign In</p>
+            <p class="h1 mb-4 fw-bold text-primary me-3 me-sm-5">Sign In</p>
             <!-- <i> per mettere le icone è consigliato dalla documentazione -->
             <a href="index.php" class="btn btn-white text-muted mb-4 ms-1 "><i class="bi bi-arrow-left text-muted me-1"></i> Torna indietro</a>
         </div>
@@ -121,7 +120,6 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
             <select name="vet" id="vet"  class="form-select mb-3">
                 <option value="none"> non associarti a nessun vet </option>
                 <?php
-                    //require("connection/connection.php");
                     $conn = get_conn();
                     $sql = "select id, nome, cognome from veterinari";
                     $res = $conn->query($sql);

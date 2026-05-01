@@ -87,9 +87,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
-<body class="d-flex vh-100 justify-content-center align-items-center bg-dark " >
+<body class="d-flex vh-100 p-3 p-sm-5 justify-content-center align-items-center bg-dark " >
 
-    <div class="p-5 text-center bg-light text-dark rounded-3">
+    <div class="p-4 p-sm-5 text-center bg-light text-dark rounded-3 align-items-center ">
         <div class="d-flex justify-content-between align-items-center ">
             <p class="h1 mb-5 fw-bold text-primary me-3">Login</p>
             <!-- <i> per mettere le icone è consigliato dalla documentazione -->
@@ -103,13 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type='radio' class='btn-check' name='type' id='customer' value='owner' autocomplete='off'>
                 <label class='btn btn-outline-primary rounded-pill px-3 px-sm-4 ' for='customer'> Proprietario </label>
             </div>
-            <!--
-            <label for="type" class="form-label">Accedi come: </label><br>
-            <select name="type" id="type" class="form-select">
-                <option value="vet">Veterinario</option>
-                <option value="customer">Cliente</option>
-            </select>
-            -->
+
             <div class="mb-3 mt-3 form-floating">
                 <input  class="form-control" type="text" name="username" id="username" required placeholder="">
                 <label for="username" class="form-label">Username: </label>

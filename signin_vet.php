@@ -78,13 +78,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <title>signin vet</title>
 </head>
-<body class="d-flex p-3 justify-content-center align-items-center bg-dark ">
-    <div class="p-4  bg-white text-dark rounded-3">
+<body class="d-flex p-3 p-sm-5 justify-content-center align-items-center bg-dark ">
+    <div class="p-4 p-sm-5  bg-white text-dark rounded-3">
 
         <div class="d-flex justify-content-between align-items-center ">
             <p class="h1 mb-5 fw-bold text-primary me-3">Sign In</p>
             <!-- <i> per mettere le icone è consigliato dalla documentazione -->
-            <a href="index.php" class="btn btn-secondary mb-5 ms-1 "><i class="bi bi-arrow-left me-1"></i> Torna indietro</a>
+            <a href="index.php" class="btn btn-white text-muted mb-5 ms-1 "><i class="bi bi-arrow-left text-muted me-1"></i> Torna indietro</a>
         </div>
         <form action="signin_vet.php" method="post">
             <div class="mb-1 mt-1 form-floating" style="min-width: 45vw;">
@@ -115,7 +115,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
             <button class="btn btn-success" type="submit"> <i class="bi bi-person-plus-fill me-3"></i> Crea Account</button>
 
         </form>
-        <p class="h1 mb-5 fw-bold text-primary me-2"><?php echo $error ?? '' ?></p>
+        <p class="h1 mb-3 mb-sm-5 fw-bold text-primary me-2"><?php echo $error ?? '' ?></p>
     </div>
 </body>
 </html>

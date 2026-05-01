@@ -93,7 +93,7 @@ function get_data($id_paziente){
         $condition = "and data_di_riferimento between'". htmlspecialchars($_POST["datainizio"]) . "' and '". htmlspecialchars($_POST["datafine"]). "'";
     }
     
-    $sql = "SELECT data_di_riferimento,a.description as appetito_des, a.peso as peso_appetito,att.description as att_des, att.peso as peso_atteggiamento,d.description as dimagrimento_des, d.peso as peso_dimagrimento, f.description as frequenza_feci_des,f.peso as frequenza_feci_peso,s.description as sangue_des, s.peso as sangue_peso,m.description as muco_des, m.peso as muco_peso, flat.description as flat_des,flat.peso as flatulenza_peso, lamb.description as lamb_des,lamb.peso as lambimento_peso,v.description as vom_des, v.peso as vomito_peso FROM `log` JOIN appetito a ON id_appetito = a.id JOIN atteggiamento att ON id_atteggiamento = att.id JOIN dimagrimento d on d.id = id_dimagrimento JOIN frequenza_feci f on id_frequenza_feci = f.id JOIN sangue s ON id_sangue=s.id JOIN muco m ON m.id = id_muco JOIN flatulenza flat ON flat.id = id_flatulenza JOIN lambimento lamb ON lamb.id = id_lambimento JOIN vomito v ON v.id = id_vomito  WHERE id_paziente = {$id_paziente} {$condition}; ";
+    $sql = "SELECT data_di_riferimento,a.description as appetito_des, a.peso as peso_appetito,att.description as att_des, att.peso as peso_atteggiamento,d.description as dimagrimento_des, d.peso as peso_dimagrimento, f.description as frequenza_feci_des,f.peso as frequenza_feci_peso,s.description as sangue_des, s.peso as sangue_peso,m.description as muco_des, m.peso as muco_peso, flat.description as flat_des,flat.peso as flatulenza_peso, lamb.description as lamb_des,lamb.peso as lambimento_peso,v.description as vom_des, v.peso as vomito_peso FROM `log` JOIN appetito a ON id_appetito = a.id JOIN atteggiamento att ON id_atteggiamento = att.id JOIN dimagrimento d on d.id = id_dimagrimento JOIN frequenza_feci f on id_frequenza_feci = f.id JOIN sangue s ON id_sangue=s.id JOIN muco m ON m.id = id_muco JOIN flatulenza flat ON flat.id = id_flatulenza JOIN lambimento lamb ON lamb.id = id_lambimento JOIN vomito v ON v.id = id_vomito  WHERE id_paziente = {$id_paziente} {$condition} ORDER BY data_di_riferimento ASC; ";
 
     $res = $conn->query($sql);
     if(!$res){
@@ -145,7 +145,11 @@ function get_data($id_paziente){
 </head>
 <body class="d-flex justify-content-center bg-dark py-5">
 
-    <div class=" p-5 text-center bg-white text-dark rounded-3 " style="min-width: 70vw;">
+    <div class=" p-sm-5 p-3 text-center bg-white text-dark rounded-3 " style="min-width: 70vw;">
+        <!--px-1 px-sm-5
+            telefono = px
+            tablet-desktop px-sm-5
+        -->
         <div class="d-flex justify-content-between align-items-center ">
             <p class="h1 mb-5 fw-bold text-primary me-3">Storico di <?php echo $nome['nome_paziente'] ?? 'errore database '?> </p>
             <!-- <i> per mettere le icone è consigliato dalla documentazione -->
@@ -183,44 +187,45 @@ function get_data($id_paziente){
         </form>
         </div>
 
-        <p class="h4 fw-semibold mb-3 text-start">Vomito: </p>
-        <div class="p-5 text-center bg-light text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
+        <!-- overflow-auto da testare -->
+        <p class="h4 fw-semibold mb-2 mb-sm-3  text-start">Vomito: </p>
+        <div class="p-2 p-sm-5 text-center bg-light text-secondary rounded-3 mb-3 mb-sm-5 border border-secondary border-1 rounded-3 " style="height: 300px;">
             <canvas id="vomito"></canvas>
         </div>
 
-        <p class="h4 fw-semibold mb-3 text-start">Lambimento: </p>
-        <div class="p-5 text-center bg-white text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
+        <p class="h4 fw-semibold mb-2 mb-sm-3 text-start">Lambimento: </p>
+        <div class="p-2 p-sm-5 text-center bg-white text-secondary rounded-3 mb-3 mb-sm-5 border border-secondary border-1 rounded-3" style="height: 300px;">
             <canvas id="lambimento"></canvas>
         </div>
 
-        <p class="h4 fw-semibold mb-3 text-start">Appetito: </p>
-        <div class="p-5 text-center bg-light text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
+        <p class="h4 fw-semibold mb-2 mb-sm-3 text-start">Appetito: </p>
+        <div class="p-2 p-sm-5 text-center bg-light text-secondary rounded-3 mb-3 mb-sm-5 border border-secondary border-1 rounded-3" style="height: 300px;">
             <canvas id="appetito"></canvas>
         </div>
 
-        <p class="h4 fw-semibold mb-3 text-start">Atteggiamento: </p>
-        <div class="p-5 text-center bg-white text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
+        <p class="h4 fw-semibold mb-2 mb-sm-3 text-start">Atteggiamento: </p>
+        <div class="p-2  p-sm-5 text-center bg-white text-secondary rounded-3 mb-3 mb-sm-5 border border-secondary border-1 rounded-3" style="height: 300px;">
             <canvas id="atteggiamento"></canvas>
         </div>
 
-        <p class="h4 fw-semibold mb-3 text-start">Dimagrimento: </p>
-        <div class="p-5 text-center bg-light text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
+        <p class="h4 fw-semibold mb-2 mb-sm-3 text-start">Dimagrimento: </p>
+        <div class="p-2  p-sm-5 text-center bg-light text-secondary rounded-3 mb-3 mb-sm-5 border border-secondary border-1 rounded-3" style="height: 300px;">
             <canvas id="dimagrimento"></canvas>
         </div>
-        <p class="h4 fw-semibold mb-3 text-start">Frequenza feci: </p>
-        <div class="p-5 text-center bg-white text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
+        <p class="h4 fw-semibold mb-2 mb-sm-3 text-start">Frequenza feci: </p>
+        <div class="p-2  p-sm-5 text-center bg-white text-secondary rounded-3 mb-3 mb-sm-5 border border-secondary border-1 rounded-3" style="height: 300px;">
             <canvas id="frequenza_feci"></canvas>
         </div>
-        <p class="h4 fw-semibold mb-3 text-start">Sangue: </p>
-        <div  class="p-5 text-center bg-light text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
+        <p class="h4 fw-semibold mb-2 mb-sm-3 text-start">Sangue: </p>
+        <div  class="p-2 p-sm-5  text-center bg-light text-secondary rounded-3 mb-3 mb-sm-5 border border-secondary border-1 rounded-3" style="height: 300px;">
             <canvas id="sangue"></canvas>
         </div>
-        <p class="h4 fw-semibold mb-3 text-start">Muco: </p>
-        <div class="p-5 text-center bg-white text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
+        <p class="h4 fw-semibold mb-2 mb-sm-3 text-start">Muco: </p>
+        <div class="p-2 p-sm-5  text-center bg-white text-secondary rounded-3 mb-3 mb-sm-5 border border-secondary border-1 rounded-3" style="height: 300px;">
             <canvas id="muco"></canvas>
         </div>
-        <p class="h4 fw-semibold mb-3 text-start">Flatulenza: </p>
-        <div class="p-5 text-center bg-light text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3" style="height: 300px;">
+        <p class="h4 fw-semibold mb-2 mb-sm-3 text-start">Flatulenza: </p>
+        <div class="p-2 p-sm-5  text-center bg-light text-secondary rounded-3 mb-3 mb-sm-5 border border-secondary border-1 rounded-3" style="height: 300px;">
             <canvas id="flatulenza"></canvas>
         </div>
 

@@ -46,14 +46,15 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=yes">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <title>Document</title>
 </head>
-<body class="d-flex justify-content-center bg-dark py-5" >
-    <div class="p-5 text-center bg-light text-dark rounded-3 ">
+<body class="d-flex justify-content-center bg-dark p-3 p-sm-5" >
+    <div class="p-3 p-sm-5 text-center bg-light text-dark rounded-3 ">
+    <!--<div class="container  px-0">-->
 
         <div class="d-flex justify-content-between align-items-center ">
             <p class="h1 mb-5 fw-bold text-primary me-3">Monitoraggio</p>

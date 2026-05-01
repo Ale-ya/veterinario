@@ -48,11 +48,11 @@ $res = $conn->query($sql);
 
         foreach ($res as $record) {
             
-            echo "<div class='p-5 text-center bg-light text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3'>";
+            echo "<div class='p-4 p-sm-5 text-center bg-light text-secondary rounded-3 mb-5 border border-secondary border-1 rounded-3'>";
             echo "<p class='h2 mb-4 fw-semibold text-secondary'> " . $record["nome_paziente"] . ", ". $record["razza"] . "</p>";
             echo "<div class='btn-group'>";
-            echo "<a class='btn btn-primary btn-1g fs-3 ' href='storico.php?id={$record['id_paziente']}'><i class='bi bi-graph-up-arrow m-2'></i>storico</a></button>";
-            echo "<a class='btn btn-primary btn-1g fs-3' href='info_animale.php?id={$record['id_paziente']}'><i class='bi bi-info-circle m-2'></i>informazioni generali</a></button>";
+            echo "<a class='btn btn-primary btn-1g fs-0 fs-sm-3 ' href='storico.php?id={$record['id_paziente']}'><i class='bi bi-graph-up-arrow m-2'></i>storico</a></button>";
+            echo "<a class='btn btn-primary btn-1g fs-0 fs-sm-3 ' href='info_animale.php?id={$record['id_paziente']}'><i class='bi bi-info-circle m-2'></i>informazioni generali</a></button>";
             echo "</div>";
             echo "</div>";
 
