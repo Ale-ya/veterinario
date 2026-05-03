@@ -50,16 +50,20 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    <title>Document</title>
+    <title>Monitoraggio</title>
 </head>
-<body class="d-flex justify-content-center bg-dark p-3 p-sm-5" >
+<body class="bg-dark min-vh-100 d-flex justify-content-center align-items-start py-3 py-sm-5">
+<!--
+<body class="d-flex justify-content-center bg-dark p-3 p-sm-5 " >
     <div class="p-3 p-sm-5 text-center bg-light text-dark rounded-3 ">
+    -->
+    <div class="p-3 p-sm-5 bg-light text-muted rounded-3 w-100 mx-3" style="max-width: 700px;">
     <!--<div class="container  px-0">-->
 
-        <div class="d-flex justify-content-between align-items-center ">
-            <p class="h1 mb-5 fw-bold text-primary me-3">Monitoraggio</p>
+        <div class="d-flex justify-content-between align-items-center mx-2">
+            <p class="h1 mb-5 fw-bold text-primary me-2">Monitoraggio</p>
             <!-- <i> per mettere le icone è consigliato dalla documentazione -->
-            <a href="dashboard_owner.php" class="btn btn-secondary mb-5 ms-1 "><i class="bi bi-house me-1"></i> Torna alla home</a>
+            <a href="dashboard_owner.php" class="btn btn-secondary mb-5 me-1"><i class="bi bi-house me-1"></i> Torna alla home</a>
         </div>
         <form action="insert_log.php" method="post">
             <!--
@@ -328,7 +332,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
                             $first_radio_button = false;
                             echo "
                             <input type='radio' class='btn-check' name='lambimento' id='{$id_radio_button}' value='{$record['id']}' autocomplete='off' {$checked}>
-                            <label class='btn btn-outline-primary rounded-pill px-4' for='{$id_radio_button}'>{$record['description']}</label>";
+                            <label class='btn btn-outline-primary rounded-pill px-3 px-sm-4' for='{$id_radio_button}'>{$record['description']}</label>";
                         }
                     }
                 ?>

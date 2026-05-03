@@ -58,7 +58,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET"){
 <body class="d-flex justify-content-center bg-dark p-3 p-sm-5 ">
 <div class="container-fluid p-3 p-sm-5 text-center bg-white text-dark rounded-3" style="min-width: 70vw;">
     <div class="d-flex justify-content-between align-items-center me-auto">
-        <p class="h1 mb-5 fw-bold text-primary me-4">Informazioni Generali</p>
+        <p class="h1 mb-5 fw-bold text-primary me-2 me-sm-4">Info Generali</p>
         <a href="dashboard_vet.php" class="btn btn-secondary mb-5 ms-1"><i class="bi  bi-house me-1"></i>Torna alla home</a>
     </div>
     

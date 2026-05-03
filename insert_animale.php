@@ -57,9 +57,14 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Aggiunta di un nuovo animale</title>
 </head>
-<body class=" d-flex justify-content-center bg-dark py-5" >
 
-    <div class="p-5  bg-light text-muted rounded-3">
+<body class="bg-dark min-vh-100 d-flex justify-content-center align-items-start py-3 py-sm-5">
+
+<!--todo capire bene come si rende usabile su tutte le piattaforme (prima era)-->
+<!--<body class=" d-flex justify-content-center bg-dark p-3 p-sm-5 " >-->
+    <!--<div class="p-3 p-sm-5  bg-light text-muted rounded-3">-->
+    <div class="p-3 p-sm-5 bg-light text-muted rounded-3 w-100 mx-3" style="max-width: 700px;">
+
         <div class="d-flex justify-content-between align-items-center ">
             <p class="h1 mb-5 fw-bold text-primary me-3">Aggiungi un animale</p>
             <!-- <i> per mettere le icone è consigliato dalla documentazione -->
@@ -112,10 +117,10 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
                 1 (true) = maschio
                 -->
                 <input type="radio" class="btn-check" name="sesso" id="sesso_m" value="1" autocomplete="off" checked>
-                <label class="btn btn-outline-primary rounded-pill px-4" for="sesso_m">Maschio</label>
+                <label class="btn btn-outline-primary rounded-pill px-3 px-sm-4 " for="sesso_m">Maschio</label>
 
                 <input type="radio" class="btn-check" name="sesso" id="sesso_f" value="0" autocomplete="off">
-                <label class="btn btn-outline-primary rounded-pill px-4" for="sesso_f">Femmina</label>
+                <label class="btn btn-outline-primary rounded-pill px-3 px-sm-4 " for="sesso_f">Femmina</label>
             </div><br>
 
             <!--
@@ -145,7 +150,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 
             </select><br> 
 
-            <button class="btn btn-success" type="submit">Inserisci animale</button>
+            <button class="btn btn-success mb-2" type="submit">Inserisci animale</button>
         </form>
     </div>
 </body>

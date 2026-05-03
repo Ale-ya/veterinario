@@ -118,7 +118,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 
             <label for="vet" class="form-label">vet:</label>
             <select name="vet" id="vet"  class="form-select mb-3">
-                <option value="none"> non associarti a nessun vet </option>
+                <option value="none"> non associarti a nessun veterinario </option>
                 <?php
                     $conn = get_conn();
                     $sql = "select id, nome, cognome from veterinari";
