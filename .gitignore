@@ -1,0 +1,5 @@
+connection/connection.php
+deploy.sh
+fastdeploy.sh
+*.tar.gz
+.pdf
