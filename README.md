@@ -22,9 +22,8 @@ Questa applicazione permette al proprietario di **inserire i dati da smartphone 
 
 ### Collaborazione
 Progetto sviluppato in collaborazione tra:
-- **Scuola superiore** — sviluppo applicativo (Alessio Paccino)
-- **Università di Parma (UNIPR)** — supervisione clinica (Sabetti MC)
-- **Libera professione / UNIMI** — Galiazzo G, Pilla Rachel
+- **ITIS Giancardi Galilei Aicardi** — sviluppo applicativo (Alessio Paccino)
+- **Università di Parma (UNIPR)** — supervisione
 
 ---
 
@@ -71,14 +70,14 @@ Ogni valore ha un **peso numerico** che permette la visualizzazione in scala nei
 
 ## Screenshot
 
-> Screenshot in arrivo — contribuzioni benvenute.
+### Dashboard veterinario
+![Dashboard veterinario](https://github.com/Ale-ya/veterinario/assets/208044545/a3d8bbe0-272f-4bf3-a9f8-3b848a09da9b)
 
-```
-docs/screenshots/
-├── dashboard_vet.png       ← Dashboard veterinario con lista pazienti
-├── insert_log.png          ← Form inserimento log giornaliero
-└── storico_grafici.png     ← Storico con grafici Chart.js e filtro date
-```
+### Inserimento log giornaliero
+![Inserimento log](https://github.com/Ale-ya/veterinario/assets/208044545/073c5878-ce96-411d-bca4-7445f1964626)
+
+### Storico con grafici
+![Storico grafici](https://github.com/Ale-ya/veterinario/assets/208044545/3bfa9d00-9cca-45fd-871f-5a187c0713ba)
 
 ---
 
@@ -226,4 +225,3 @@ Ogni tabella lookup ha struttura `(id, description, peso)`. Il campo `peso` è i
 **Alessio Paccino** — [@Ale-ya](https://github.com/Ale-ya)
 
 Progetto in collaborazione con **Università di Parma (UNIPR)** — A.A. 2025/2026  
-Referenti: Sabetti MC (UNIPR), Galiazzo G, Pilla Rachel (UNIMI)

@@ -2,4 +2,8 @@ connection/connection.php
 deploy.sh
 fastdeploy.sh
 *.tar.gz
-.pdf
+*.pdf
+*.png
+*.jpg
+*.gif
+*.webp
